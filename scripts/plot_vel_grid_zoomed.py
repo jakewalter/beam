@@ -181,11 +181,29 @@ def plot_one(vel, arr, outdir, zooms=(100, 80, 50, 25), size_by='mean_snr', size
                 lsq_sizes = [s for p,s in zip(pts, sizes) if p in lsq_pts]
                 int_sizes = [s for p,s in zip(pts, sizes) if p in int_pts]
 
+                # Print a short diagnostic so users running the script can see
+                # how many points are being plotted and typical sizes.
+                try:
+                    import numpy as _np
+                    print(f'[plot] vel={vel} zoom={z} pts={len(pts)} lsq={len(lsq_pts)} int={len(int_pts)} size_median={float(_np.median(sizes)):.1f}')
+                except Exception:
+                    print(f'[plot] vel={vel} zoom={z} pts={len(pts)} lsq={len(lsq_pts)} int={len(int_pts)}')
+
                 # For color/size rendering we will show points sized/colored per the
-                # requested fields in the color-by loop; here draw faint outlines
-                # of the point types to provide context but keep them subtle.
-                ax.scatter(int_lons, int_lats, s=[max(2,min(8,s)) for s in int_sizes] or 6, c='C1', label='intersection', alpha=0.25, transform=ccrs.PlateCarree(), zorder=1, linewidths=0)
-                ax.scatter(lsq_lons, lsq_lats, s=[max(2,min(8,s)) for s in lsq_sizes] or 6, c='C0', label='lsq', alpha=0.25, transform=ccrs.PlateCarree(), zorder=2, linewidths=0)
+                # requested fields in the color-by loop; here draw outlines of the
+                # point types to provide context. Increase the baseline marker
+                # visibility (size and alpha) so points are not lost on light
+                # basemaps (users can still control size via --size-range).
+                base_min_size = 6
+                base_max_size = 20
+                def _base_clip(s):
+                    try:
+                        return max(base_min_size, min(base_max_size, s))
+                    except Exception:
+                        return base_min_size
+
+                ax.scatter(int_lons, int_lats, s=[_base_clip(s) for s in int_sizes] or base_min_size, c='C1', label='intersection', alpha=0.6, transform=ccrs.PlateCarree(), zorder=1, linewidths=0)
+                ax.scatter(lsq_lons, lsq_lats, s=[_base_clip(s) for s in lsq_sizes] or base_min_size, c='C0', label='lsq', alpha=0.6, transform=ccrs.PlateCarree(), zorder=2, linewidths=0)
             except Exception as e:
                 # If cartopy fails at runtime, fall back to plain plotting
                 print('[WARN] cartopy projection failed; falling back to Matplotlib:', e)
