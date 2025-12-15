@@ -1,0 +1,73 @@
+# Ignore plots and generated outputs
+plots/
+plots/**
+*.png
+*.pdf
+*.html
+
+# Python artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Virtual env
+venv/
+env/
+.env
+
+# Editor stuff
+.vscode/
+.idea/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtualenv
+venv/
+env/
+.python-version
+
+# pyenv
+.python-version
+
+# Pytest/cache
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Editor configs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+*.swp
+
+# Logs and runtime
+*.log
+logs/
+
+# Data and outputs (change this to your structure)
+plots/
+output/
+/tmp*
+
+# Secrets
+.env
+credentials.json
+
+# Misc
+*.sqlite
