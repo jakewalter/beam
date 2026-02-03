@@ -125,6 +125,63 @@ These additions make it easy to explore uncertainty and choose parameters that m
 
 ---
 
+## Installation
+
+### Prerequisites
+- Python 3.9 or later
+- CUDA toolkit (for GPU acceleration; optional but recommended for large-scale processing)
+- Git
+
+### Clone the repository
+```bash
+git clone https://github.com/<username>/beam.git
+cd beam
+```
+
+### Option 1: Install with Conda (recommended)
+```bash
+# Create and activate the conda environment
+conda env create -f environment_gpu.yml
+conda activate beam-gpu
+
+# Note: The environment_gpu.yml includes cupy-cuda13x by default.
+# If you have a different CUDA version, edit environment_gpu.yml
+# and replace cupy-cuda13x with the appropriate version:
+#   - cupy-cuda11x for CUDA 11.x
+#   - cupy-cuda12x for CUDA 12.x
+```
+
+### Option 2: Install with pip
+```bash
+# Create a virtual environment (recommended)
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+# Note: Replace cupy-cuda13x with your CUDA version if different
+pip install cupy-cuda13x obspy numpy scipy matplotlib pandas pyproj requests protobuf
+
+# Alternatively, install from requirements file
+pip install -r requirements_gpu.txt
+```
+
+### CPU-only installation
+If you don't have a GPU or want to run in CPU-only mode, you can skip CuPy:
+```bash
+pip install obspy numpy scipy matplotlib pandas pyproj requests protobuf
+```
+
+### Verify installation
+```bash
+# Run tests to verify everything is working
+PYTHONPATH=. python -m pytest -q
+
+# Or check if the module can be imported
+python -c "import beam; print('BEAM installation successful')"
+```
+
+---
+
 ## Quick start (new)
 
 If you just cloned the repo and want to run the pipeline end-to-end for a date range defined in `configs/template_config.json` (or another config), try:
