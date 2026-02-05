@@ -1,0 +1,33 @@
+{
+  "mode": "traditional",
+  "data_dir": "/scratch2/time/day_volumes",
+  "start": "20200101",
+  "end": "20211231",
+  "gpu": true,
+  "gpu_safety_factor": 2,
+  "surface_wave": true,
+  "plot": true,
+  "plot_dir": "/scratch2/time/day_volumes/bench_june2020_snr10_drsc_subarrays",
+  "subarrays": [
+    ["LILA","DEEJ","LOUS","TJTJ","ELZA","OTIS","SQIG"],
+    ["JULA","OKGS","FRST","WICH","BAUM","EPJZ","DRSC"]
+  ],
+  "vel_min": 1.5,
+  "vel_max": 5.0,
+  "vel_step": 0.5,
+  "az_step": 5.0,
+  "fk_max_per_subarray": 3,
+  "fk_min_snr": 10,
+  "min_snr_output": 0,
+  "time_tol": 20.0,
+  "min_snr": 8.0,
+  "lsq_vel_min": 1.5,
+  "lsq_vel_max": 5.0,
+  "lsq_vel_tol": 0.5,
+  "lsq_force_vel": null,
+  "cluster_radius_km": 20.0,
+  "cluster_min_members": 1,
+  "inventory": "/scratch2/time/day_volumes/time.xml",
+  "inventory_name": "time.xml",
+  "inventory_pattern": "time.xml"
+}

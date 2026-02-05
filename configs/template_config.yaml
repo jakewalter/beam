@@ -1,0 +1,18 @@
+mode: traditional
+data-dir: /scratch2/time/day_volumes
+start: 20200101
+end: 20200401
+gpu: true
+gpu-safety-factor: 2
+surface-wave: true
+plot: true
+plot-dir: /scratch2/time/day_volumes/bench_june2020_snr10_drsc_subarrays
+subarrays:
+  - [LILA, DEEJ, LOUS, TJTJ, ELZA, OTIS, SQIG]
+  - [JULA, OKGS, FRST, WICH, BAUM, EPJZ, DRSC]
+vel-min: 1.5
+vel-max: 5.0
+vel-step: 0.5
+az-step: 5.0
+fk-max-per-subarray: 3
+fk-min-snr: 10
