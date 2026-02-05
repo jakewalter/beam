@@ -182,7 +182,58 @@ python -c "import beam; print('BEAM installation successful')"
 
 ---
 
-## Quick start (new)
+## Quick Start
+
+### Running a test detection
+
+Before processing large datasets, it's recommended to run a small test to verify your setup. Here's how to run a basic detection:
+
+**Option 1: Using the command-line interface**
+```bash
+# Run beamforming for a single day with your data
+PYTHONPATH=. python3 beam_driver.py \
+  --mode traditional \
+  --data-dir /path/to/your/miniseed/data \
+  --inventory /path/to/your/station.xml \
+  --start 20200601 \
+  --end 20200601 \
+  --plot \
+  --plot-dir ./plots/test_run
+```
+
+**Option 2: Using a configuration file (recommended)**
+
+1. First, edit the template config to point to your data:
+   ```bash
+   cp configs/template_config.json configs/my_test.json
+   # Edit configs/my_test.json to set your data_dir, inventory, start/end dates
+   ```
+
+2. Run the detection:
+   ```bash
+   PYTHONPATH=. python -m beam --config configs/my_test.json
+   ```
+
+**Option 3: Using the Makefile**
+
+Edit the [Makefile](Makefile) to set your paths, then:
+```bash
+make detect
+```
+
+### What to expect
+
+After running a test detection, you should see:
+- Per-subarray detection files: `plots/test_run/subarray_0/detections_YYYYMMDD.json`
+- Merged daily detections: `plots/test_run/detections_YYYYMMDD.json`
+- Optional plots (if `--plot` was enabled)
+- Console output showing beam processing progress
+
+If using the full pipeline (`python -m beam`), you'll also get:
+- Triangulated locations: `plots/test_run/locations_YYYYMMDD.json`
+- CSV summary: `plots/test_run/locations_summary_YYYYMMDD.csv`
+
+### Running the full pipeline
 
 If you just cloned the repo and want to run the pipeline end-to-end for a date range defined in `configs/template_config.json` (or another config), try:
 
