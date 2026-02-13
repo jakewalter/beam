@@ -27,7 +27,10 @@ This yields robust picks based on shape similarity to the master template.
     - $$s_x = s\sin(\theta)$$
     - $$s_y = s\cos(\theta)$$
   - Per-station delays $\tau_i$ in seconds:
-    - $$\tau_i = s_x x_i + s_y y_i\quad \text{(where $x_i$, $y_i$ in km relative to array center)}$$
+
+    $$\tau_i = s_x x_i + s_y y_i$$
+
+    where $x_i$, $y_i$ are in km relative to array center.
   - Beamformed signal:
     - $$B(t) = \frac{1}{N}\sum_{i=1}^{N} x_i\bigl(t - \tau_i\bigr)$$
 
@@ -75,7 +78,7 @@ More specifically, the implementation used in this repository follows these step
     where $\mathbf{r}_i$ is the array center in local $(x,y)$ km.
   - Backazimuth provides a directional (cross-track) constraint: with unit bearing $\mathbf{u}_i$ pointing array→source, the perpendicular (cross-track) distance is
 
-    $$\Delta_{\perp,i} = \bigl| (\mathbf{r}-\mathbf{r}_i) \times \mathbf{u}_i \bigr| = \bigl| (x-x_i)u_{i,y} - (y-y_i)u_{i,x}\bigr|.$$
+    $$\Delta_{\perp,i} = \bigl\lvert (\mathbf{r}-\mathbf{r}_i) \times \mathbf{u}_i \bigr\rvert = \bigl\lvert (x-x_i)u_{i,y} - (y-y_i)u_{i,x}\bigr\rvert.$$
 
   - The LSQ fitter minimizes a combined objective (sum of squared, weighted residuals):
 
@@ -87,7 +90,7 @@ More specifically, the implementation used in this repository follows these step
     $$\frac{\partial\hat t_i}{\partial x} = s_i\frac{x-x_i}{\lVert\mathbf{r}-\mathbf{r}_i\rVert},\qquad \frac{\partial\hat t_i}{\partial y} = s_i\frac{y-y_i}{\lVert\mathbf{r}-\mathbf{r}_i\rVert},\qquad \frac{\partial\hat t_i}{\partial t_0}=1,$$
 
     and for directional residuals the derivatives are the signed components of the perpendicular operator (the derivative of $(x-x_i)u_{i,y}-(y-y_i)u_{i,x}$ with respect to $x,y$).
-  - On convergence the optimizer returns an estimate $(x^*,y^*,t_0^*)$ which is converted back to geographic coordinates using the inverse local projection and accompanied by an approximate covariance from $(J^T J)^{-1}$.
+
 
 These formulas are implemented in `beam/core/triangulation.py` (pairwise intersection) and `beam/core/locator.py` (least-squares multi-array fitter). The code uses a local equirectangular projection (suitable for regional scales) and combines TOA and directional constraints to produce robust location estimates.
 
