@@ -140,6 +140,9 @@ def main():
                 cmd.extend(['--inventory-tag', str(inv_tag)])
             if inv_name:
                 cmd.extend(['--inventory-name', str(inv_name)])
+            # Set output path for detections.txt to plot_dir with date
+            detections_txt_path = os.path.join(plot_dir, f'detections_{date_str}.txt')
+            cmd.extend(['--output', detections_txt_path])
             # execute
             print('Executing:', ' '.join(cmd))
             if args.dry_run:

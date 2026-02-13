@@ -31,13 +31,7 @@ This yields robust picks based on shape similarity to the master template.
   - Beamformed signal:
     - $$B(t) = \frac{1}{N}\sum_{i=1}^{N} x_i\bigl(t - \tau_i\bigr)$$
 
--- Characteristic function (e.g., envelope):
-  - $$\mathrm{envelope}(B) = \bigl|\mathcal{H}\{B\}\bigr|$$
 
--- STA/LTA:
-  - $$\mathrm{STA}(t) = \frac{1}{T_{\mathrm{STA}}}\int_{t - T_{\mathrm{STA}}/2}^{t + T_{\mathrm{STA}}/2} |B(\tau)|\,\mathrm{d}\tau$$
-  - $$\mathrm{LTA}(t) = \frac{1}{T_{\mathrm{LTA}}}\int_{t - T_{\mathrm{LTA}}/2}^{t + T_{\mathrm{LTA}}/2} |B(\tau)|\,\mathrm{d}\tau$$
-  - $$R(t) = \frac{\mathrm{STA}(t)}{\mathrm{LTA}(t) + 1\times 10^{-12}}$$
 
 ### 3) FK Analysis (optional refinement)
 - Frequency–Wavenumber (FK) analysis in a short window to refine apparent slowness/azimuth that maximize beam power.
@@ -50,31 +44,48 @@ More specifically, the implementation used in this repository follows these step
 
 - Local projection
   - Convert geographic coordinates (lat, lon) to local Cartesian coordinates (x, y) in kilometers using a simple equirectangular approximation about a chosen origin (centroid of centers):
+
     $$x = (\lambda - \lambda_0) \cdot 111.32\cos(\phi_0), \qquad y = (\phi - \phi_0)\cdot 110.54$$
+
     where $(\phi,\lambda)$ are latitude/longitude in degrees and $(\phi_0,\lambda_0)$ is the projection origin.
 
 - Pairwise bearing intersection (two-array triangulation)
   - For two arrays at $(x_1,y_1)$ and $(x_2,y_2)$ with forward bearings (array→source) $\varphi_1$ and $\varphi_2$ (radians, measured from North clockwise), define direction unit vectors
-    $$\mathbf{v}_i = (\sin\varphi_i,\;\cos\varphi_i),\quad i=1,2.$$ 
+
+    $$\mathbf{v}_i = (\sin\varphi_i,\;\cos\varphi_i),\quad i=1,2.$$
+
   - Parametric lines are $\mathbf{p}_i(t)=\mathbf{p}_i + t\mathbf{v}_i$. Solve for the scalar parameter $t$ using the 2×2 linear system; explicitly, with
+
     $$\Delta x = x_2 - x_1,\quad \Delta y = y_2 - y_1,\quad \text{denom} = \sin(\varphi_1-\varphi_2),$$
+
     $$t_1 = \frac{\Delta x\cos\varphi_2 - \Delta y\sin\varphi_2}{\sin(\varphi_1-\varphi_2)}$$
+
     and the intersection point is
+
     $$x^* = x_1 + t_1\sin\varphi_1,\qquad y^* = y_1 + t_1\cos\varphi_1.$$
+
     If the denominator is (nearly) zero the lines are parallel and no unique intersection exists.
 
 - Least-squares multi-array localization (nonlinear LSQ)
   - Each array $i$ provides an arrival time $t_i$, backazimuth $\beta_i$ and slowness $s_i$ (s/km); let the unknown source be at position $\mathbf{r}=(x,y)$ with origin time $t_0$.
   - Predicted arrival time at array $i$ (approximate plane-wave / far-field model using per-array slowness) is
+
     $$\hat t_i = t_0 + s_i\,\lVert\mathbf{r}-\mathbf{r}_i\rVert,$$
+
     where $\mathbf{r}_i$ is the array center in local $(x,y)$ km.
   - Backazimuth provides a directional (cross-track) constraint: with unit bearing $\mathbf{u}_i$ pointing array→source, the perpendicular (cross-track) distance is
+
     $$\Delta_{\perp,i} = \bigl| (\mathbf{r}-\mathbf{r}_i) \times \mathbf{u}_i \bigr| = \bigl| (x-x_i)u_{i,y} - (y-y_i)u_{i,x}\bigr|.$$
+
   - The LSQ fitter minimizes a combined objective (sum of squared, weighted residuals):
+
     $$J(x,y,t_0)=\sum_i\left[\left(\frac{t_i-\hat t_i}{\sigma_t}\right)^2 + \left(\frac{\Delta_{\perp,i}}{\sigma_{\perp}}\right)^2\right],$$
+
     where $\sigma_t$ and $\sigma_{\perp}$ are scaling/weight parameters (TOA and directional weights).
   - This nonlinear problem is solved iteratively (Gauss–Newton / Levenberg–Marquardt via SciPy's least_squares).  The Jacobian entries used in the linearization are, for the time residuals,
+
     $$\frac{\partial\hat t_i}{\partial x} = s_i\frac{x-x_i}{\lVert\mathbf{r}-\mathbf{r}_i\rVert},\qquad \frac{\partial\hat t_i}{\partial y} = s_i\frac{y-y_i}{\lVert\mathbf{r}-\mathbf{r}_i\rVert},\qquad \frac{\partial\hat t_i}{\partial t_0}=1,$$
+
     and for directional residuals the derivatives are the signed components of the perpendicular operator (the derivative of $(x-x_i)u_{i,y}-(y-y_i)u_{i,x}$ with respect to $x,y$).
   - On convergence the optimizer returns an estimate $(x^*,y^*,t_0^*)$ which is converted back to geographic coordinates using the inverse local projection and accompanied by an approximate covariance from $(J^T J)^{-1}$.
 
@@ -269,10 +280,10 @@ Notes:
 - Typical pipeline runs per-day (or a date range) and creates:
   - `plot_dir/subarray_{i}/detections_YYYYMMDD.json` (per-subarray per-day)
   - `plot_dir/detections_YYYYMMDD.json` (per-day aggregated JSON)
+  - `plot_dir/detections_YYYYMMDD.txt` (per-day text summary output)
   - `plot_dir/locations_YYYYMMDD.json` (pairwise triangulation results)
   - `plot_dir/locations_lsq_YYYYMMDD.json` (LSQ multi-array location results, when at least 3 arrays) 
   - `plot_dir/locations_summary_YYYYMMDD.csv` (deduplicated summary for mapping & analysis)
-  - `plot_dir/detections.txt` (legacy summary output)
 
 - The pipeline orchestrator `run_pipeline.py` wraps the daily runs and the follow-up triangular & cluster steps. It prefers `detections_YYYYMMDD.json` when present for triangulation.
 
