@@ -1,0 +1,2 @@
+# BEAM Traditional Beamforming Detections
+# Time, Velocity(km/s), Backazimuth(deg), SNR, Duration(s)

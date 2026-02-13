@@ -1,0 +1,1380 @@
+{
+  "20200601": [
+    {
+      "time": 1590969899.95,
+      "velocity": 3.0,
+      "backazimuth": 265.0,
+      "snr": 8.7,
+      "duration": 20.65,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590969971.9,
+      "velocity": 1.5,
+      "backazimuth": 100.0,
+      "snr": 7.13,
+      "duration": 50.75,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970068.2,
+      "velocity": 1.5,
+      "backazimuth": 45.0,
+      "snr": 8.36,
+      "duration": 21.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970140.6,
+      "velocity": 4.5,
+      "backazimuth": 230.0,
+      "snr": 3.5,
+      "duration": 0.15,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590970147.8,
+      "velocity": 1.5,
+      "backazimuth": 330.0,
+      "snr": 4.39,
+      "duration": 11.45,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970161.15,
+      "velocity": 1.5,
+      "backazimuth": 320.0,
+      "snr": 4.84,
+      "duration": 12.6,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970170.45,
+      "velocity": 1.5,
+      "backazimuth": 95.0,
+      "snr": 4.0,
+      "duration": 6.3,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970182.5,
+      "velocity": 2.0,
+      "backazimuth": 245.0,
+      "snr": 3.67,
+      "duration": 3.45,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970189.8,
+      "velocity": 2.5,
+      "backazimuth": 55.0,
+      "snr": 3.92,
+      "duration": 5.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970222.7,
+      "velocity": 1.5,
+      "backazimuth": 180.0,
+      "snr": 6.45,
+      "duration": 34.05,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970267.3,
+      "velocity": 3.5,
+      "backazimuth": 340.0,
+      "snr": 5.53,
+      "duration": 12.3,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590970302.1,
+      "velocity": 1.5,
+      "backazimuth": 75.0,
+      "snr": 4.67,
+      "duration": 8.8,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970312.9,
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 3.72,
+      "duration": 4.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970320.75,
+      "velocity": 1.5,
+      "backazimuth": 40.0,
+      "snr": 3.87,
+      "duration": 5.2,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970339.55,
+      "velocity": 1.5,
+      "backazimuth": 355.0,
+      "snr": 3.75,
+      "duration": 4.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970344.75,
+      "velocity": 1.5,
+      "backazimuth": 280.0,
+      "snr": 3.74,
+      "duration": 4.3,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970362.75,
+      "velocity": 4.5,
+      "backazimuth": 355.0,
+      "snr": 3.75,
+      "duration": 4.4,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590970372.95,
+      "velocity": 2.0,
+      "backazimuth": 350.0,
+      "snr": 4.33,
+      "duration": 8.05,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970379.5,
+      "velocity": 2.0,
+      "backazimuth": 345.0,
+      "snr": 4.81,
+      "duration": 8.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970394.05,
+      "velocity": 2.0,
+      "backazimuth": 40.0,
+      "snr": 3.57,
+      "duration": 1.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970408.45,
+      "velocity": 4.5,
+      "backazimuth": 180.0,
+      "snr": 4.35,
+      "duration": 7.7,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590970413.85,
+      "velocity": 1.5,
+      "backazimuth": 70.0,
+      "snr": 4.73,
+      "duration": 10.4,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970427.2,
+      "velocity": 1.5,
+      "backazimuth": 170.0,
+      "snr": 4.03,
+      "duration": 7.15,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970437.2,
+      "velocity": 2.0,
+      "backazimuth": 20.0,
+      "snr": 4.55,
+      "duration": 9.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970447.9,
+      "velocity": 2.5,
+      "backazimuth": 40.0,
+      "snr": 3.53,
+      "duration": 1.75,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970460.55,
+      "velocity": 2.0,
+      "backazimuth": 65.0,
+      "snr": 4.57,
+      "duration": 9.8,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970487.25,
+      "velocity": 2.0,
+      "backazimuth": 345.0,
+      "snr": 3.88,
+      "duration": 6.35,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970553.7,
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 3.57,
+      "duration": 3.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970564.1,
+      "velocity": 2.5,
+      "backazimuth": 155.0,
+      "snr": 3.87,
+      "duration": 5.25,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970572.8,
+      "velocity": 2.5,
+      "backazimuth": 75.0,
+      "snr": 3.64,
+      "duration": 3.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970619.3,
+      "velocity": 1.5,
+      "backazimuth": 120.0,
+      "snr": 3.88,
+      "duration": 6.65,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970630.9,
+      "velocity": 1.5,
+      "backazimuth": 85.0,
+      "snr": 3.62,
+      "duration": 3.45,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970644.7,
+      "velocity": 4.0,
+      "backazimuth": 210.0,
+      "snr": 3.88,
+      "duration": 5.25,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590970653.55,
+      "velocity": 4.0,
+      "backazimuth": 250.0,
+      "snr": 4.69,
+      "duration": 10.8,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590970675.25,
+      "velocity": 2.5,
+      "backazimuth": 315.0,
+      "snr": 4.36,
+      "duration": 7.7,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970768.1,
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 28.33,
+      "duration": 20.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970950.3,
+      "velocity": 1.5,
+      "backazimuth": 20.0,
+      "snr": 3.63,
+      "duration": 3.05,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970962.15,
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 4.64,
+      "duration": 8.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590970992.55,
+      "velocity": 4.5,
+      "backazimuth": 90.0,
+      "snr": 4.06,
+      "duration": 6.3,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590971013.55,
+      "velocity": 1.5,
+      "backazimuth": 165.0,
+      "snr": 4.17,
+      "duration": 7.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590971045.5,
+      "velocity": 2.0,
+      "backazimuth": 60.0,
+      "snr": 3.96,
+      "duration": 6.25,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590971188.5,
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.56,
+      "duration": 2.55,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590971209.8,
+      "velocity": 4.5,
+      "backazimuth": 45.0,
+      "snr": 3.81,
+      "duration": 5.7,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590971230.85,
+      "velocity": 2.0,
+      "backazimuth": 90.0,
+      "snr": 3.68,
+      "duration": 4.35,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590971500.85,
+      "velocity": 1.5,
+      "backazimuth": 15.0,
+      "snr": 3.78,
+      "duration": 5.65,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590972190.35,
+      "velocity": 2.0,
+      "backazimuth": 125.0,
+      "snr": 3.64,
+      "duration": 3.45,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590972205.95,
+      "velocity": 1.5,
+      "backazimuth": 80.0,
+      "snr": 4.0,
+      "duration": 6.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590972242.25,
+      "velocity": 2.0,
+      "backazimuth": 330.0,
+      "snr": 3.91,
+      "duration": 5.5,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590972250.2,
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.88,
+      "duration": 5.8,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590972435.35,
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 29.96,
+      "duration": 12.5,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590972814.9,
+      "velocity": 2.5,
+      "backazimuth": 330.0,
+      "snr": 3.63,
+      "duration": 3.15,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590973018.8,
+      "velocity": 1.5,
+      "backazimuth": 60.0,
+      "snr": 3.51,
+      "duration": 0.95,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590973150.4,
+      "velocity": 2.5,
+      "backazimuth": 15.0,
+      "snr": 25.55,
+      "duration": 20.2,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590974824.8,
+      "velocity": 1.5,
+      "backazimuth": 260.0,
+      "snr": 29.96,
+      "duration": 12.6,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590975509.25,
+      "velocity": 1.5,
+      "backazimuth": 340.0,
+      "snr": 27.55,
+      "duration": 15.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590976294.65,
+      "velocity": 1.5,
+      "backazimuth": 105.0,
+      "snr": 3.91,
+      "duration": 6.65,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590976359.4,
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.52,
+      "duration": 1.2,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590976591.7,
+      "velocity": 1.5,
+      "backazimuth": 355.0,
+      "snr": 3.51,
+      "duration": 0.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590976625.35,
+      "velocity": 2.5,
+      "backazimuth": 70.0,
+      "snr": 3.92,
+      "duration": 5.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590976641.25,
+      "velocity": 4.0,
+      "backazimuth": 355.0,
+      "snr": 3.65,
+      "duration": 4.2,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590977131.75,
+      "velocity": 3.5,
+      "backazimuth": 120.0,
+      "snr": 29.95,
+      "duration": 12.9,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590978012.9,
+      "velocity": 1.5,
+      "backazimuth": 175.0,
+      "snr": 3.54,
+      "duration": 3.2,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590978060.25,
+      "velocity": 3.0,
+      "backazimuth": 265.0,
+      "snr": 3.77,
+      "duration": 5.2,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590978074.05,
+      "velocity": 2.0,
+      "backazimuth": 285.0,
+      "snr": 4.2,
+      "duration": 9.35,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590978360.8,
+      "velocity": 1.5,
+      "backazimuth": 125.0,
+      "snr": 3.77,
+      "duration": 3.65,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590978385.85,
+      "velocity": 2.0,
+      "backazimuth": 80.0,
+      "snr": 4.83,
+      "duration": 8.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590978397.85,
+      "velocity": 4.0,
+      "backazimuth": 60.0,
+      "snr": 3.8,
+      "duration": 3.55,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590978425.0,
+      "velocity": 1.5,
+      "backazimuth": 15.0,
+      "snr": 4.36,
+      "duration": 6.1,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590978440.65,
+      "velocity": 1.5,
+      "backazimuth": 320.0,
+      "snr": 3.73,
+      "duration": 2.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590978830.45,
+      "velocity": 3.0,
+      "backazimuth": 30.0,
+      "snr": 3.79,
+      "duration": 5.3,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590978857.95,
+      "velocity": 1.5,
+      "backazimuth": 90.0,
+      "snr": 3.71,
+      "duration": 5.3,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590982024.55,
+      "velocity": 2.0,
+      "backazimuth": 0.0,
+      "snr": 4.07,
+      "duration": 6.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590982622.35,
+      "velocity": 1.5,
+      "backazimuth": 30.0,
+      "snr": 3.66,
+      "duration": 5.7,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590982646.05,
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 3.6,
+      "duration": 2.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590984984.95,
+      "velocity": 2.5,
+      "backazimuth": 55.0,
+      "snr": 3.64,
+      "duration": 3.5,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590985000.1,
+      "velocity": 1.5,
+      "backazimuth": 80.0,
+      "snr": 4.15,
+      "duration": 9.6,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590985022.95,
+      "velocity": 3.0,
+      "backazimuth": 45.0,
+      "snr": 3.55,
+      "duration": 1.85,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590985406.7,
+      "velocity": 2.5,
+      "backazimuth": 320.0,
+      "snr": 3.75,
+      "duration": 3.95,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590985416.1,
+      "velocity": 1.5,
+      "backazimuth": 160.0,
+      "snr": 3.6,
+      "duration": 3.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590985434.5,
+      "velocity": 1.5,
+      "backazimuth": 65.0,
+      "snr": 4.88,
+      "duration": 12.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590985467.7,
+      "velocity": 1.5,
+      "backazimuth": 350.0,
+      "snr": 3.78,
+      "duration": 5.65,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590985869.35,
+      "velocity": 1.5,
+      "backazimuth": 95.0,
+      "snr": 3.77,
+      "duration": 6.4,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590985874.85,
+      "velocity": 1.5,
+      "backazimuth": 100.0,
+      "snr": 4.1,
+      "duration": 10.05,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590986929.1,
+      "velocity": 3.0,
+      "backazimuth": 110.0,
+      "snr": 3.66,
+      "duration": 3.9,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590988675.85,
+      "velocity": 1.5,
+      "backazimuth": 295.0,
+      "snr": 3.71,
+      "duration": 4.95,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590988721.55,
+      "velocity": 1.5,
+      "backazimuth": 65.0,
+      "snr": 3.71,
+      "duration": 4.35,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590990164.7,
+      "velocity": 4.0,
+      "backazimuth": 255.0,
+      "snr": 3.78,
+      "duration": 4.75,
+      "subarray_id": 0
+    },
+    {
+      "time": 1590994741.15,
+      "velocity": 1.5,
+      "backazimuth": 285.0,
+      "snr": 3.63,
+      "duration": 3.2,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590995644.65,
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 3.59,
+      "duration": 2.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590996646.9,
+      "velocity": 1.5,
+      "backazimuth": 345.0,
+      "snr": 3.77,
+      "duration": 5.4,
+      "subarray_id": 1
+    },
+    {
+      "time": 1590996695.4,
+      "velocity": 2.0,
+      "backazimuth": 110.0,
+      "snr": 4.25,
+      "duration": 9.15,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591000001.7,
+      "velocity": 1.5,
+      "backazimuth": 285.0,
+      "snr": 3.89,
+      "duration": 7.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591004655.75,
+      "velocity": 1.5,
+      "backazimuth": 45.0,
+      "snr": 3.93,
+      "duration": 6.45,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591004691.45,
+      "velocity": 1.5,
+      "backazimuth": 140.0,
+      "snr": 4.0,
+      "duration": 11.45,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591006253.85,
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.53,
+      "duration": 1.75,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591006943.35,
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 4.66,
+      "duration": 11.5,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591006978.55,
+      "velocity": 1.5,
+      "backazimuth": 60.0,
+      "snr": 3.66,
+      "duration": 3.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591007006.45,
+      "velocity": 1.5,
+      "backazimuth": 120.0,
+      "snr": 3.51,
+      "duration": 0.75,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591009517.15,
+      "velocity": 1.5,
+      "backazimuth": 50.0,
+      "snr": 3.89,
+      "duration": 5.35,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591011199.45,
+      "velocity": 1.5,
+      "backazimuth": 285.0,
+      "snr": 3.51,
+      "duration": 1.5,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591012351.85,
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 4.14,
+      "duration": 8.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591012359.35,
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 3.86,
+      "duration": 7.25,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591012385.0,
+      "velocity": 2.0,
+      "backazimuth": 55.0,
+      "snr": 4.26,
+      "duration": 8.95,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591012404.35,
+      "velocity": 2.0,
+      "backazimuth": 115.0,
+      "snr": 3.54,
+      "duration": 1.65,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591012410.75,
+      "velocity": 1.5,
+      "backazimuth": 95.0,
+      "snr": 3.5,
+      "duration": 0.5,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591012756.1,
+      "velocity": 2.0,
+      "backazimuth": 115.0,
+      "snr": 3.83,
+      "duration": 6.65,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591013520.7,
+      "velocity": 2.0,
+      "backazimuth": 315.0,
+      "snr": 3.54,
+      "duration": 1.65,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591015096.45,
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 3.53,
+      "duration": 1.6,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591016119.2,
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.51,
+      "duration": 1.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591017111.8,
+      "velocity": 2.5,
+      "backazimuth": 275.0,
+      "snr": 3.72,
+      "duration": 4.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591017125.3,
+      "velocity": 3.0,
+      "backazimuth": 240.0,
+      "snr": 3.53,
+      "duration": 1.25,
+      "subarray_id": 0
+    },
+    {
+      "time": 1591017149.4,
+      "velocity": 1.5,
+      "backazimuth": 85.0,
+      "snr": 4.2,
+      "duration": 10.15,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591017154.55,
+      "velocity": 2.0,
+      "backazimuth": 105.0,
+      "snr": 5.36,
+      "duration": 20.4,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591017161.85,
+      "velocity": 2.0,
+      "backazimuth": 70.0,
+      "snr": 3.83,
+      "duration": 7.6,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591017173.1,
+      "velocity": 1.5,
+      "backazimuth": 140.0,
+      "snr": 3.92,
+      "duration": 30.25,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591017185.75,
+      "velocity": 1.5,
+      "backazimuth": 145.0,
+      "snr": 3.7,
+      "duration": 4.7,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591017195.15,
+      "velocity": 1.5,
+      "backazimuth": 135.0,
+      "snr": 3.92,
+      "duration": 30.45,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591020050.35,
+      "velocity": 1.5,
+      "backazimuth": 95.0,
+      "snr": 4.42,
+      "duration": 10.7,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591020057.75,
+      "velocity": 1.5,
+      "backazimuth": 100.0,
+      "snr": 4.02,
+      "duration": 8.4,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591020063.4,
+      "velocity": 3.0,
+      "backazimuth": 100.0,
+      "snr": 3.69,
+      "duration": 5.45,
+      "subarray_id": 0
+    },
+    {
+      "time": 1591020068.5,
+      "velocity": 2.0,
+      "backazimuth": 80.0,
+      "snr": 4.03,
+      "duration": 8.1,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591020091.3,
+      "velocity": 1.5,
+      "backazimuth": 25.0,
+      "snr": 3.89,
+      "duration": 7.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591020610.6,
+      "velocity": 2.0,
+      "backazimuth": 150.0,
+      "snr": 3.71,
+      "duration": 6.3,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591020773.05,
+      "velocity": 2.5,
+      "backazimuth": 55.0,
+      "snr": 3.86,
+      "duration": 6.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591021747.4,
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 4.07,
+      "duration": 9.2,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591021853.05,
+      "velocity": 1.5,
+      "backazimuth": 325.0,
+      "snr": 3.69,
+      "duration": 4.3,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591021884.1,
+      "velocity": 1.5,
+      "backazimuth": 35.0,
+      "snr": 3.5,
+      "duration": 0.45,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591021903.55,
+      "velocity": 1.5,
+      "backazimuth": 65.0,
+      "snr": 3.56,
+      "duration": 3.35,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591021918.0,
+      "velocity": 1.5,
+      "backazimuth": 135.0,
+      "snr": 3.68,
+      "duration": 4.95,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591021929.35,
+      "velocity": 1.5,
+      "backazimuth": 140.0,
+      "snr": 3.86,
+      "duration": 8.25,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591022258.0,
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 3.59,
+      "duration": 3.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591022288.85,
+      "velocity": 2.0,
+      "backazimuth": 60.0,
+      "snr": 5.46,
+      "duration": 17.55,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591022324.65,
+      "velocity": 2.0,
+      "backazimuth": 300.0,
+      "snr": 3.76,
+      "duration": 5.4,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591022337.8,
+      "velocity": 1.5,
+      "backazimuth": 325.0,
+      "snr": 3.67,
+      "duration": 6.5,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591024016.8,
+      "velocity": 2.5,
+      "backazimuth": 110.0,
+      "snr": 3.62,
+      "duration": 3.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591024112.65,
+      "velocity": 1.5,
+      "backazimuth": 45.0,
+      "snr": 3.53,
+      "duration": 2.1,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591024299.9,
+      "velocity": 4.5,
+      "backazimuth": 350.0,
+      "snr": 4.0,
+      "duration": 7.55,
+      "subarray_id": 0
+    },
+    {
+      "time": 1591024327.4,
+      "velocity": 1.5,
+      "backazimuth": 200.0,
+      "snr": 3.55,
+      "duration": 2.1,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591024895.4,
+      "velocity": 2.5,
+      "backazimuth": 80.0,
+      "snr": 3.79,
+      "duration": 6.2,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591025516.2,
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 3.56,
+      "duration": 2.4,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591028108.5,
+      "velocity": 1.5,
+      "backazimuth": 75.0,
+      "snr": 3.58,
+      "duration": 2.95,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591028612.4,
+      "velocity": 1.5,
+      "backazimuth": 300.0,
+      "snr": 3.74,
+      "duration": 4.35,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591028647.75,
+      "velocity": 4.5,
+      "backazimuth": 35.0,
+      "snr": 3.72,
+      "duration": 4.05,
+      "subarray_id": 0
+    },
+    {
+      "time": 1591029472.05,
+      "velocity": 1.5,
+      "backazimuth": 85.0,
+      "snr": 4.02,
+      "duration": 6.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591029981.25,
+      "velocity": 4.5,
+      "backazimuth": 35.0,
+      "snr": 3.58,
+      "duration": 2.55,
+      "subarray_id": 0
+    },
+    {
+      "time": 1591030004.05,
+      "velocity": 2.0,
+      "backazimuth": 285.0,
+      "snr": 4.25,
+      "duration": 9.25,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591030186.05,
+      "velocity": 2.5,
+      "backazimuth": 70.0,
+      "snr": 3.78,
+      "duration": 6.1,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591031611.95,
+      "velocity": 4.5,
+      "backazimuth": 205.0,
+      "snr": 3.5,
+      "duration": 0.1,
+      "subarray_id": 0
+    },
+    {
+      "time": 1591031621.7,
+      "velocity": 1.5,
+      "backazimuth": 70.0,
+      "snr": 3.87,
+      "duration": 8.5,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591031634.2,
+      "velocity": 1.5,
+      "backazimuth": 170.0,
+      "snr": 4.39,
+      "duration": 12.35,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591031644.3,
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 4.92,
+      "duration": 14.75,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591032252.5,
+      "velocity": 1.5,
+      "backazimuth": 305.0,
+      "snr": 3.75,
+      "duration": 4.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591032398.95,
+      "velocity": 1.5,
+      "backazimuth": 80.0,
+      "snr": 4.14,
+      "duration": 11.65,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591034086.35,
+      "velocity": 2.0,
+      "backazimuth": 95.0,
+      "snr": 3.57,
+      "duration": 2.3,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591035234.95,
+      "velocity": 1.5,
+      "backazimuth": 125.0,
+      "snr": 3.7,
+      "duration": 6.25,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591037992.7,
+      "velocity": 1.5,
+      "backazimuth": 35.0,
+      "snr": 3.91,
+      "duration": 6.3,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591038029.15,
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 4.01,
+      "duration": 8.05,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591038038.6,
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 3.76,
+      "duration": 6.6,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591039073.25,
+      "velocity": 3.0,
+      "backazimuth": 185.0,
+      "snr": 3.64,
+      "duration": 4.1,
+      "subarray_id": 0
+    },
+    {
+      "time": 1591039846.05,
+      "velocity": 4.5,
+      "backazimuth": 320.0,
+      "snr": 3.84,
+      "duration": 5.8,
+      "subarray_id": 0
+    },
+    {
+      "time": 1591040202.6,
+      "velocity": 3.5,
+      "backazimuth": 75.0,
+      "snr": 3.56,
+      "duration": 2.55,
+      "subarray_id": 0
+    },
+    {
+      "time": 1591041906.7,
+      "velocity": 1.5,
+      "backazimuth": 85.0,
+      "snr": 4.19,
+      "duration": 9.1,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591042904.75,
+      "velocity": 2.0,
+      "backazimuth": 60.0,
+      "snr": 4.33,
+      "duration": 9.05,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591043322.5,
+      "velocity": 2.0,
+      "backazimuth": 75.0,
+      "snr": 3.67,
+      "duration": 6.2,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591045487.8,
+      "velocity": 2.0,
+      "backazimuth": 155.0,
+      "snr": 3.69,
+      "duration": 3.8,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591045516.35,
+      "velocity": 2.0,
+      "backazimuth": 55.0,
+      "snr": 3.64,
+      "duration": 3.55,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591045522.9,
+      "velocity": 1.5,
+      "backazimuth": 235.0,
+      "snr": 3.62,
+      "duration": 3.45,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591045540.6,
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 3.55,
+      "duration": 2.85,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591045548.6,
+      "velocity": 2.0,
+      "backazimuth": 340.0,
+      "snr": 4.82,
+      "duration": 12.2,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591047417.05,
+      "velocity": 1.5,
+      "backazimuth": 160.0,
+      "snr": 3.81,
+      "duration": 5.9,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591047609.5,
+      "velocity": 1.5,
+      "backazimuth": 285.0,
+      "snr": 3.71,
+      "duration": 5.0,
+      "subarray_id": 1
+    },
+    {
+      "time": 1591050692.45,
+      "velocity": 2.0,
+      "backazimuth": 130.0,
+      "snr": 3.52,
+      "duration": 1.4,
+      "subarray_id": 1
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+name: beam-gpu
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - pip
+  - pip:
+    # NOTE: CuPy builds are CUDA-version specific. Replace <CUDA> with
+    # your installed CUDA version series (e.g. cupy-cuda11x or cupy-cuda12x)
+    # e.g. pip install cupy-cuda11x
+    - cupy-cuda13x  # CUDA 13.x runtime (adjust if you have a different CUDA minor)
+    # cusignal builds are provided through RAPIDS channels and often require
+    # extra configuration; remove from default pip install here. If you want
+    # cuSignal on this system, follow RAPIDS installation instructions.
+    - obspy
+    - protobuf
+    - matplotlib
+    - pyproj
+    - requests
+
+# If you prefer conda packages for CuPy, use e.g. `conda install -c conda-forge cupy cudatoolkit=11.8`
+# but system CUDA installation and driver compatibility are recommended for best performance.

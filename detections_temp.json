@@ -1,0 +1,1380 @@
+{
+  "20200601": [
+    {
+      "time": "2020-06-01T00:04:59.950000Z",
+      "velocity": 3.0,
+      "backazimuth": 265.0,
+      "snr": 8.7,
+      "duration": 20.65,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T00:06:11.900000Z",
+      "velocity": 1.5,
+      "backazimuth": 100.0,
+      "snr": 7.13,
+      "duration": 50.75,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:07:48.200000Z",
+      "velocity": 1.5,
+      "backazimuth": 45.0,
+      "snr": 8.36,
+      "duration": 21.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:09:00.600000Z",
+      "velocity": 4.5,
+      "backazimuth": 230.0,
+      "snr": 3.5,
+      "duration": 0.15,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T00:09:07.800000Z",
+      "velocity": 1.5,
+      "backazimuth": 330.0,
+      "snr": 4.39,
+      "duration": 11.45,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:09:21.150000Z",
+      "velocity": 1.5,
+      "backazimuth": 320.0,
+      "snr": 4.84,
+      "duration": 12.6,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:09:30.450000Z",
+      "velocity": 1.5,
+      "backazimuth": 95.0,
+      "snr": 4.0,
+      "duration": 6.3,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:09:42.500000Z",
+      "velocity": 2.0,
+      "backazimuth": 245.0,
+      "snr": 3.67,
+      "duration": 3.45,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:09:49.800000Z",
+      "velocity": 2.5,
+      "backazimuth": 55.0,
+      "snr": 3.92,
+      "duration": 5.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:10:22.700000Z",
+      "velocity": 1.5,
+      "backazimuth": 180.0,
+      "snr": 6.45,
+      "duration": 34.05,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:11:07.300000Z",
+      "velocity": 3.5,
+      "backazimuth": 340.0,
+      "snr": 5.53,
+      "duration": 12.3,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T00:11:42.100000Z",
+      "velocity": 1.5,
+      "backazimuth": 75.0,
+      "snr": 4.67,
+      "duration": 8.8,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:11:52.900000Z",
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 3.72,
+      "duration": 4.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:12:00.750000Z",
+      "velocity": 1.5,
+      "backazimuth": 40.0,
+      "snr": 3.87,
+      "duration": 5.2,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:12:19.550000Z",
+      "velocity": 1.5,
+      "backazimuth": 355.0,
+      "snr": 3.75,
+      "duration": 4.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:12:24.750000Z",
+      "velocity": 1.5,
+      "backazimuth": 280.0,
+      "snr": 3.74,
+      "duration": 4.3,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:12:42.750000Z",
+      "velocity": 4.5,
+      "backazimuth": 355.0,
+      "snr": 3.75,
+      "duration": 4.4,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T00:12:52.950000Z",
+      "velocity": 2.0,
+      "backazimuth": 350.0,
+      "snr": 4.33,
+      "duration": 8.05,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:12:59.500000Z",
+      "velocity": 2.0,
+      "backazimuth": 345.0,
+      "snr": 4.81,
+      "duration": 8.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:13:14.050000Z",
+      "velocity": 2.0,
+      "backazimuth": 40.0,
+      "snr": 3.57,
+      "duration": 1.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:13:28.450000Z",
+      "velocity": 4.5,
+      "backazimuth": 180.0,
+      "snr": 4.35,
+      "duration": 7.7,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T00:13:33.850000Z",
+      "velocity": 1.5,
+      "backazimuth": 70.0,
+      "snr": 4.73,
+      "duration": 10.4,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:13:47.200000Z",
+      "velocity": 1.5,
+      "backazimuth": 170.0,
+      "snr": 4.03,
+      "duration": 7.15,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:13:57.200000Z",
+      "velocity": 2.0,
+      "backazimuth": 20.0,
+      "snr": 4.55,
+      "duration": 9.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:14:07.900000Z",
+      "velocity": 2.5,
+      "backazimuth": 40.0,
+      "snr": 3.53,
+      "duration": 1.75,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:14:20.550000Z",
+      "velocity": 2.0,
+      "backazimuth": 65.0,
+      "snr": 4.57,
+      "duration": 9.8,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:14:47.250000Z",
+      "velocity": 2.0,
+      "backazimuth": 345.0,
+      "snr": 3.88,
+      "duration": 6.35,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:15:53.700000Z",
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 3.57,
+      "duration": 3.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:16:04.100000Z",
+      "velocity": 2.5,
+      "backazimuth": 155.0,
+      "snr": 3.87,
+      "duration": 5.25,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:16:12.800000Z",
+      "velocity": 2.5,
+      "backazimuth": 75.0,
+      "snr": 3.64,
+      "duration": 3.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:16:59.300000Z",
+      "velocity": 1.5,
+      "backazimuth": 120.0,
+      "snr": 3.88,
+      "duration": 6.65,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:17:10.900000Z",
+      "velocity": 1.5,
+      "backazimuth": 85.0,
+      "snr": 3.62,
+      "duration": 3.45,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:17:24.700000Z",
+      "velocity": 4.0,
+      "backazimuth": 210.0,
+      "snr": 3.88,
+      "duration": 5.25,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T00:17:33.550000Z",
+      "velocity": 4.0,
+      "backazimuth": 250.0,
+      "snr": 4.69,
+      "duration": 10.8,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T00:17:55.250000Z",
+      "velocity": 2.5,
+      "backazimuth": 315.0,
+      "snr": 4.36,
+      "duration": 7.7,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:19:28.100000Z",
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 28.33,
+      "duration": 20.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:22:30.300000Z",
+      "velocity": 1.5,
+      "backazimuth": 20.0,
+      "snr": 3.63,
+      "duration": 3.05,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:22:42.150000Z",
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 4.64,
+      "duration": 8.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:23:12.550000Z",
+      "velocity": 4.5,
+      "backazimuth": 90.0,
+      "snr": 4.06,
+      "duration": 6.3,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T00:23:33.550000Z",
+      "velocity": 1.5,
+      "backazimuth": 165.0,
+      "snr": 4.17,
+      "duration": 7.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:24:05.500000Z",
+      "velocity": 2.0,
+      "backazimuth": 60.0,
+      "snr": 3.96,
+      "duration": 6.25,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:26:28.500000Z",
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.56,
+      "duration": 2.55,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:26:49.800000Z",
+      "velocity": 4.5,
+      "backazimuth": 45.0,
+      "snr": 3.81,
+      "duration": 5.7,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T00:27:10.850000Z",
+      "velocity": 2.0,
+      "backazimuth": 90.0,
+      "snr": 3.68,
+      "duration": 4.35,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:31:40.850000Z",
+      "velocity": 1.5,
+      "backazimuth": 15.0,
+      "snr": 3.78,
+      "duration": 5.65,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:43:10.350000Z",
+      "velocity": 2.0,
+      "backazimuth": 125.0,
+      "snr": 3.64,
+      "duration": 3.45,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:43:25.950000Z",
+      "velocity": 1.5,
+      "backazimuth": 80.0,
+      "snr": 4.0,
+      "duration": 6.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:44:02.250000Z",
+      "velocity": 2.0,
+      "backazimuth": 330.0,
+      "snr": 3.91,
+      "duration": 5.5,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:44:10.200000Z",
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.88,
+      "duration": 5.8,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:47:15.350000Z",
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 29.96,
+      "duration": 12.5,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:53:34.900000Z",
+      "velocity": 2.5,
+      "backazimuth": 330.0,
+      "snr": 3.63,
+      "duration": 3.15,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:56:58.800000Z",
+      "velocity": 1.5,
+      "backazimuth": 60.0,
+      "snr": 3.51,
+      "duration": 0.95,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T00:59:10.400000Z",
+      "velocity": 2.5,
+      "backazimuth": 15.0,
+      "snr": 25.55,
+      "duration": 20.2,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T01:27:04.800000Z",
+      "velocity": 1.5,
+      "backazimuth": 260.0,
+      "snr": 29.96,
+      "duration": 12.6,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T01:38:29.250000Z",
+      "velocity": 1.5,
+      "backazimuth": 340.0,
+      "snr": 27.55,
+      "duration": 15.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T01:51:34.650000Z",
+      "velocity": 1.5,
+      "backazimuth": 105.0,
+      "snr": 3.91,
+      "duration": 6.65,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T01:52:39.400000Z",
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.52,
+      "duration": 1.2,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T01:56:31.700000Z",
+      "velocity": 1.5,
+      "backazimuth": 355.0,
+      "snr": 3.51,
+      "duration": 0.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T01:57:05.350000Z",
+      "velocity": 2.5,
+      "backazimuth": 70.0,
+      "snr": 3.92,
+      "duration": 5.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T01:57:21.250000Z",
+      "velocity": 4.0,
+      "backazimuth": 355.0,
+      "snr": 3.65,
+      "duration": 4.2,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T02:05:31.750000Z",
+      "velocity": 3.5,
+      "backazimuth": 120.0,
+      "snr": 29.95,
+      "duration": 12.9,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T02:20:12.900000Z",
+      "velocity": 1.5,
+      "backazimuth": 175.0,
+      "snr": 3.54,
+      "duration": 3.2,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T02:21:00.250000Z",
+      "velocity": 3.0,
+      "backazimuth": 265.0,
+      "snr": 3.77,
+      "duration": 5.2,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T02:21:14.050000Z",
+      "velocity": 2.0,
+      "backazimuth": 285.0,
+      "snr": 4.2,
+      "duration": 9.35,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T02:26:00.800000Z",
+      "velocity": 1.5,
+      "backazimuth": 125.0,
+      "snr": 3.77,
+      "duration": 3.65,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T02:26:25.850000Z",
+      "velocity": 2.0,
+      "backazimuth": 80.0,
+      "snr": 4.83,
+      "duration": 8.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T02:26:37.850000Z",
+      "velocity": 4.0,
+      "backazimuth": 60.0,
+      "snr": 3.8,
+      "duration": 3.55,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T02:27:05.000000Z",
+      "velocity": 1.5,
+      "backazimuth": 15.0,
+      "snr": 4.36,
+      "duration": 6.1,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T02:27:20.650000Z",
+      "velocity": 1.5,
+      "backazimuth": 320.0,
+      "snr": 3.73,
+      "duration": 2.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T02:33:50.450000Z",
+      "velocity": 3.0,
+      "backazimuth": 30.0,
+      "snr": 3.79,
+      "duration": 5.3,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T02:34:17.950000Z",
+      "velocity": 1.5,
+      "backazimuth": 90.0,
+      "snr": 3.71,
+      "duration": 5.3,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T03:27:04.550000Z",
+      "velocity": 2.0,
+      "backazimuth": 0.0,
+      "snr": 4.07,
+      "duration": 6.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T03:37:02.350000Z",
+      "velocity": 1.5,
+      "backazimuth": 30.0,
+      "snr": 3.66,
+      "duration": 5.7,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T03:37:26.050000Z",
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 3.6,
+      "duration": 2.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T04:16:24.950000Z",
+      "velocity": 2.5,
+      "backazimuth": 55.0,
+      "snr": 3.64,
+      "duration": 3.5,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T04:16:40.100000Z",
+      "velocity": 1.5,
+      "backazimuth": 80.0,
+      "snr": 4.15,
+      "duration": 9.6,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T04:17:02.950000Z",
+      "velocity": 3.0,
+      "backazimuth": 45.0,
+      "snr": 3.55,
+      "duration": 1.85,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T04:23:26.700000Z",
+      "velocity": 2.5,
+      "backazimuth": 320.0,
+      "snr": 3.75,
+      "duration": 3.95,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T04:23:36.100000Z",
+      "velocity": 1.5,
+      "backazimuth": 160.0,
+      "snr": 3.6,
+      "duration": 3.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T04:23:54.500000Z",
+      "velocity": 1.5,
+      "backazimuth": 65.0,
+      "snr": 4.88,
+      "duration": 12.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T04:24:27.700000Z",
+      "velocity": 1.5,
+      "backazimuth": 350.0,
+      "snr": 3.78,
+      "duration": 5.65,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T04:31:09.350000Z",
+      "velocity": 1.5,
+      "backazimuth": 95.0,
+      "snr": 3.77,
+      "duration": 6.4,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T04:31:14.850000Z",
+      "velocity": 1.5,
+      "backazimuth": 100.0,
+      "snr": 4.1,
+      "duration": 10.05,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T04:48:49.100000Z",
+      "velocity": 3.0,
+      "backazimuth": 110.0,
+      "snr": 3.66,
+      "duration": 3.9,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T05:17:55.850000Z",
+      "velocity": 1.5,
+      "backazimuth": 295.0,
+      "snr": 3.71,
+      "duration": 4.95,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T05:18:41.550000Z",
+      "velocity": 1.5,
+      "backazimuth": 65.0,
+      "snr": 3.71,
+      "duration": 4.35,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T05:42:44.700000Z",
+      "velocity": 4.0,
+      "backazimuth": 255.0,
+      "snr": 3.78,
+      "duration": 4.75,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T06:59:01.150000Z",
+      "velocity": 1.5,
+      "backazimuth": 285.0,
+      "snr": 3.63,
+      "duration": 3.2,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T07:14:04.650000Z",
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 3.59,
+      "duration": 2.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T07:30:46.900000Z",
+      "velocity": 1.5,
+      "backazimuth": 345.0,
+      "snr": 3.77,
+      "duration": 5.4,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T07:31:35.400000Z",
+      "velocity": 2.0,
+      "backazimuth": 110.0,
+      "snr": 4.25,
+      "duration": 9.15,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T08:26:41.700000Z",
+      "velocity": 1.5,
+      "backazimuth": 285.0,
+      "snr": 3.89,
+      "duration": 7.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T09:44:15.750000Z",
+      "velocity": 1.5,
+      "backazimuth": 45.0,
+      "snr": 3.93,
+      "duration": 6.45,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T09:44:51.450000Z",
+      "velocity": 1.5,
+      "backazimuth": 140.0,
+      "snr": 4.0,
+      "duration": 11.45,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T10:10:53.850000Z",
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.53,
+      "duration": 1.75,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T10:22:23.350000Z",
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 4.66,
+      "duration": 11.5,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T10:22:58.550000Z",
+      "velocity": 1.5,
+      "backazimuth": 60.0,
+      "snr": 3.66,
+      "duration": 3.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T10:23:26.450000Z",
+      "velocity": 1.5,
+      "backazimuth": 120.0,
+      "snr": 3.51,
+      "duration": 0.75,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T11:05:17.150000Z",
+      "velocity": 1.5,
+      "backazimuth": 50.0,
+      "snr": 3.89,
+      "duration": 5.35,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T11:33:19.450000Z",
+      "velocity": 1.5,
+      "backazimuth": 285.0,
+      "snr": 3.51,
+      "duration": 1.5,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T11:52:31.850000Z",
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 4.14,
+      "duration": 8.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T11:52:39.350000Z",
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 3.86,
+      "duration": 7.25,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T11:53:05.000000Z",
+      "velocity": 2.0,
+      "backazimuth": 55.0,
+      "snr": 4.26,
+      "duration": 8.95,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T11:53:24.350000Z",
+      "velocity": 2.0,
+      "backazimuth": 115.0,
+      "snr": 3.54,
+      "duration": 1.65,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T11:53:30.750000Z",
+      "velocity": 1.5,
+      "backazimuth": 95.0,
+      "snr": 3.5,
+      "duration": 0.5,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T11:59:16.100000Z",
+      "velocity": 2.0,
+      "backazimuth": 115.0,
+      "snr": 3.83,
+      "duration": 6.65,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T12:12:00.700000Z",
+      "velocity": 2.0,
+      "backazimuth": 315.0,
+      "snr": 3.54,
+      "duration": 1.65,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T12:38:16.450000Z",
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 3.53,
+      "duration": 1.6,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T12:55:19.200000Z",
+      "velocity": 1.5,
+      "backazimuth": 5.0,
+      "snr": 3.51,
+      "duration": 1.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T13:11:51.800000Z",
+      "velocity": 2.5,
+      "backazimuth": 275.0,
+      "snr": 3.72,
+      "duration": 4.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T13:12:05.300000Z",
+      "velocity": 3.0,
+      "backazimuth": 240.0,
+      "snr": 3.53,
+      "duration": 1.25,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T13:12:29.400000Z",
+      "velocity": 1.5,
+      "backazimuth": 85.0,
+      "snr": 4.2,
+      "duration": 10.15,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T13:12:34.550000Z",
+      "velocity": 2.0,
+      "backazimuth": 105.0,
+      "snr": 5.36,
+      "duration": 20.4,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T13:12:41.850000Z",
+      "velocity": 2.0,
+      "backazimuth": 70.0,
+      "snr": 3.83,
+      "duration": 7.6,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T13:12:53.100000Z",
+      "velocity": 1.5,
+      "backazimuth": 140.0,
+      "snr": 3.92,
+      "duration": 30.25,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T13:13:05.750000Z",
+      "velocity": 1.5,
+      "backazimuth": 145.0,
+      "snr": 3.7,
+      "duration": 4.7,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T13:13:15.150000Z",
+      "velocity": 1.5,
+      "backazimuth": 135.0,
+      "snr": 3.92,
+      "duration": 30.45,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:00:50.350000Z",
+      "velocity": 1.5,
+      "backazimuth": 95.0,
+      "snr": 4.42,
+      "duration": 10.7,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:00:57.750000Z",
+      "velocity": 1.5,
+      "backazimuth": 100.0,
+      "snr": 4.02,
+      "duration": 8.4,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:01:03.400000Z",
+      "velocity": 3.0,
+      "backazimuth": 100.0,
+      "snr": 3.69,
+      "duration": 5.45,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T14:01:08.500000Z",
+      "velocity": 2.0,
+      "backazimuth": 80.0,
+      "snr": 4.03,
+      "duration": 8.1,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:01:31.300000Z",
+      "velocity": 1.5,
+      "backazimuth": 25.0,
+      "snr": 3.89,
+      "duration": 7.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:10:10.600000Z",
+      "velocity": 2.0,
+      "backazimuth": 150.0,
+      "snr": 3.71,
+      "duration": 6.3,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:12:53.050000Z",
+      "velocity": 2.5,
+      "backazimuth": 55.0,
+      "snr": 3.86,
+      "duration": 6.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:29:07.400000Z",
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 4.07,
+      "duration": 9.2,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:30:53.050000Z",
+      "velocity": 1.5,
+      "backazimuth": 325.0,
+      "snr": 3.69,
+      "duration": 4.3,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:31:24.100000Z",
+      "velocity": 1.5,
+      "backazimuth": 35.0,
+      "snr": 3.5,
+      "duration": 0.45,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:31:43.550000Z",
+      "velocity": 1.5,
+      "backazimuth": 65.0,
+      "snr": 3.56,
+      "duration": 3.35,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:31:58.000000Z",
+      "velocity": 1.5,
+      "backazimuth": 135.0,
+      "snr": 3.68,
+      "duration": 4.95,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:32:09.350000Z",
+      "velocity": 1.5,
+      "backazimuth": 140.0,
+      "snr": 3.86,
+      "duration": 8.25,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:37:38.000000Z",
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 3.59,
+      "duration": 3.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:38:08.850000Z",
+      "velocity": 2.0,
+      "backazimuth": 60.0,
+      "snr": 5.46,
+      "duration": 17.55,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:38:44.650000Z",
+      "velocity": 2.0,
+      "backazimuth": 300.0,
+      "snr": 3.76,
+      "duration": 5.4,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T14:38:57.800000Z",
+      "velocity": 1.5,
+      "backazimuth": 325.0,
+      "snr": 3.67,
+      "duration": 6.5,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T15:06:56.800000Z",
+      "velocity": 2.5,
+      "backazimuth": 110.0,
+      "snr": 3.62,
+      "duration": 3.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T15:08:32.650000Z",
+      "velocity": 1.5,
+      "backazimuth": 45.0,
+      "snr": 3.53,
+      "duration": 2.1,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T15:11:39.900000Z",
+      "velocity": 4.5,
+      "backazimuth": 350.0,
+      "snr": 4.0,
+      "duration": 7.55,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T15:12:07.400000Z",
+      "velocity": 1.5,
+      "backazimuth": 200.0,
+      "snr": 3.55,
+      "duration": 2.1,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T15:21:35.400000Z",
+      "velocity": 2.5,
+      "backazimuth": 80.0,
+      "snr": 3.79,
+      "duration": 6.2,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T15:31:56.200000Z",
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 3.56,
+      "duration": 2.4,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T16:15:08.500000Z",
+      "velocity": 1.5,
+      "backazimuth": 75.0,
+      "snr": 3.58,
+      "duration": 2.95,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T16:23:32.400000Z",
+      "velocity": 1.5,
+      "backazimuth": 300.0,
+      "snr": 3.74,
+      "duration": 4.35,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T16:24:07.750000Z",
+      "velocity": 4.5,
+      "backazimuth": 35.0,
+      "snr": 3.72,
+      "duration": 4.05,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T16:37:52.050000Z",
+      "velocity": 1.5,
+      "backazimuth": 85.0,
+      "snr": 4.02,
+      "duration": 6.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T16:46:21.250000Z",
+      "velocity": 4.5,
+      "backazimuth": 35.0,
+      "snr": 3.58,
+      "duration": 2.55,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T16:46:44.050000Z",
+      "velocity": 2.0,
+      "backazimuth": 285.0,
+      "snr": 4.25,
+      "duration": 9.25,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T16:49:46.050000Z",
+      "velocity": 2.5,
+      "backazimuth": 70.0,
+      "snr": 3.78,
+      "duration": 6.1,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T17:13:31.950000Z",
+      "velocity": 4.5,
+      "backazimuth": 205.0,
+      "snr": 3.5,
+      "duration": 0.1,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T17:13:41.700000Z",
+      "velocity": 1.5,
+      "backazimuth": 70.0,
+      "snr": 3.87,
+      "duration": 8.5,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T17:13:54.200000Z",
+      "velocity": 1.5,
+      "backazimuth": 170.0,
+      "snr": 4.39,
+      "duration": 12.35,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T17:14:04.300000Z",
+      "velocity": 1.5,
+      "backazimuth": 115.0,
+      "snr": 4.92,
+      "duration": 14.75,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T17:24:12.500000Z",
+      "velocity": 1.5,
+      "backazimuth": 305.0,
+      "snr": 3.75,
+      "duration": 4.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T17:26:38.950000Z",
+      "velocity": 1.5,
+      "backazimuth": 80.0,
+      "snr": 4.14,
+      "duration": 11.65,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T17:54:46.350000Z",
+      "velocity": 2.0,
+      "backazimuth": 95.0,
+      "snr": 3.57,
+      "duration": 2.3,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T18:13:54.950000Z",
+      "velocity": 1.5,
+      "backazimuth": 125.0,
+      "snr": 3.7,
+      "duration": 6.25,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T18:59:52.700000Z",
+      "velocity": 1.5,
+      "backazimuth": 35.0,
+      "snr": 3.91,
+      "duration": 6.3,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T19:00:29.150000Z",
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 4.01,
+      "duration": 8.05,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T19:00:38.600000Z",
+      "velocity": 1.5,
+      "backazimuth": 110.0,
+      "snr": 3.76,
+      "duration": 6.6,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T19:17:53.250000Z",
+      "velocity": 3.0,
+      "backazimuth": 185.0,
+      "snr": 3.64,
+      "duration": 4.1,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T19:30:46.050000Z",
+      "velocity": 4.5,
+      "backazimuth": 320.0,
+      "snr": 3.84,
+      "duration": 5.8,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T19:36:42.600000Z",
+      "velocity": 3.5,
+      "backazimuth": 75.0,
+      "snr": 3.56,
+      "duration": 2.55,
+      "subarray_id": 0
+    },
+    {
+      "time": "2020-06-01T20:05:06.700000Z",
+      "velocity": 1.5,
+      "backazimuth": 85.0,
+      "snr": 4.19,
+      "duration": 9.1,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T20:21:44.750000Z",
+      "velocity": 2.0,
+      "backazimuth": 60.0,
+      "snr": 4.33,
+      "duration": 9.05,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T20:28:42.500000Z",
+      "velocity": 2.0,
+      "backazimuth": 75.0,
+      "snr": 3.67,
+      "duration": 6.2,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T21:04:47.800000Z",
+      "velocity": 2.0,
+      "backazimuth": 155.0,
+      "snr": 3.69,
+      "duration": 3.8,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T21:05:16.350000Z",
+      "velocity": 2.0,
+      "backazimuth": 55.0,
+      "snr": 3.64,
+      "duration": 3.55,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T21:05:22.900000Z",
+      "velocity": 1.5,
+      "backazimuth": 235.0,
+      "snr": 3.62,
+      "duration": 3.45,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T21:05:40.600000Z",
+      "velocity": 1.5,
+      "backazimuth": 0.0,
+      "snr": 3.55,
+      "duration": 2.85,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T21:05:48.600000Z",
+      "velocity": 2.0,
+      "backazimuth": 340.0,
+      "snr": 4.82,
+      "duration": 12.2,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T21:36:57.050000Z",
+      "velocity": 1.5,
+      "backazimuth": 160.0,
+      "snr": 3.81,
+      "duration": 5.9,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T21:40:09.500000Z",
+      "velocity": 1.5,
+      "backazimuth": 285.0,
+      "snr": 3.71,
+      "duration": 5.0,
+      "subarray_id": 1
+    },
+    {
+      "time": "2020-06-01T22:31:32.450000Z",
+      "velocity": 2.0,
+      "backazimuth": 130.0,
+      "snr": 3.52,
+      "duration": 1.4,
+      "subarray_id": 1
+    }
+  ]
+}

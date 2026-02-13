@@ -1,0 +1,10 @@
+## GPU requirements (use pip)
+# Replace cupy-cudaXX with the cuPy distribution matching your CUDA toolkit
+# Example: pip install cupy-cuda11x cusignal obspy matplotlib numpy scipy pandas
+
+cupy-cuda13x  # for CUDA 13.x - change if your system has a different CUDA family
+obspy
+numpy
+scipy
+matplotlib
+pandas

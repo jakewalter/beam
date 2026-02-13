@@ -1,0 +1,7 @@
+data_dir: /scratch2/time/day_volumes
+end: '20200601'
+gpu: true
+gpu_safety_factor: 2
+mode: traditional
+start: '20200601'
+subarrays: LILA,DEEJ,LOUS,TJTJ,ELZA,OTIS,SQIG;JULA,OKGS,FRST,WICH,BAUM,EPJZ,DRSC
