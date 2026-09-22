@@ -134,7 +134,12 @@ def test_gpu_flag_file_disables_gpu(tmp_path, monkeypatch):
     os.remove(test_flag)
 
 
-def test_classic_sta_lta_matches_obspy():
+def test_classic_sta_lta_matches_obspy_on_beam_output():
+    """STA/LTA of an actual beamformer output must match ObsPy.
+
+    Complements test_classic_sta_lta_matches_obspy, which feeds a synthetic
+    trace directly: this exercises the beamformer -> STA/LTA path.
+    """
     # synthetic single station waveform
     import numpy as np
     from obspy.signal.trigger import classic_sta_lta as obspy_classic
@@ -150,8 +155,9 @@ def test_classic_sta_lta_matches_obspy():
     lta = 50
     obspy_ratio = obspy_classic(beams_cpu.flatten(), sta, lta)
 
-    # our implementation on CPU
-    ratio_cpu = __import__('beam.core.gpu_beam', fromlist=['classic_sta_lta']).classic_sta_lta(beams_cpu[None, :], sta, lta, use_gpu=False)
+    # our implementation on CPU. beams_cpu is already (n_beams, n_samples);
+    # adding another axis would make it 3D and classic_sta_lta would raise.
+    ratio_cpu = __import__('beam.core.gpu_beam', fromlist=['classic_sta_lta']).classic_sta_lta(beams_cpu, sta, lta, use_gpu=False)
     ratio_cpu = ratio_cpu.flatten()
 
     # They may differ at the edges; compare central region where both windows are valid

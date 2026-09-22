@@ -923,18 +923,38 @@ class TraditionalBeamformer:
     def compute_delays(self, slowness, backazimuth):
         """
         Compute time delays for beamforming.
-        
+
+        Sign convention
+        ---------------
+        Returns ``tau_i = s * (x_i * sin(theta) + y_i * cos(theta))``, to be
+        applied as a *delay* of station ``i`` -- which is what
+        ``beam.core.gpu_beam.beamform_freq_domain`` does, since it multiplies
+        each station spectrum by ``exp(-2j*pi*f*tau)``.
+
+        A plane wave arriving from backazimuth ``theta`` propagates toward
+        ``theta + 180``, so it reaches station ``i`` at time ``-tau_i``
+        relative to the array centre; applying ``+tau_i`` therefore aligns it.
+        The consequence worth remembering: **the grid angle that maximises beam
+        power is the backazimuth** (the direction the energy came FROM), which
+        is the same convention that
+        ``beam.core.geometry.slowness_to_velocity_azimuth`` returns. For a
+        small-aperture array the direction to the source and the direction the
+        wave arrives from are the same bearing, so "TO source" and "FROM" agree
+        here; they are not interchangeable in general.
+
         Parameters
         ----------
         slowness : float
             Slowness in s/km
         backazimuth : float
-            Backazimuth in degrees (direction TO source)
-            
+            Backazimuth in degrees, measured clockwise from North: the
+            direction the wavefront arrives from (equivalently, for a compact
+            array, the bearing toward the source).
+
         Returns
         -------
         delays : dict
-            Station delays in seconds
+            Station delays in seconds, keyed by station code.
         """
         az_rad = np.radians(backazimuth)
         

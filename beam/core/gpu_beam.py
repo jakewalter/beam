@@ -465,48 +465,6 @@ def sta_lta(env, sampling_rate, sta_window, lta_window, use_gpu: bool = True):
     return ratio
 
 
-def classic_sta_lta(beams, sta_samples, lta_samples, use_gpu=True):
-    """GPU/CPU implementation of ObsPy's classic_sta_lta for 2D beams.
-
-    Computes STA and LTA as trailing averages of squared signal (energy)
-    and returns an array of STA/LTA ratios with the same sample length as
-    input beams. Works with numpy arrays or CuPy arrays.
-    """
-    xp = cp if (use_gpu and CUPY_AVAILABLE) else np
-
-    arr = beams
-    if xp is cp and not isinstance(arr, cp.ndarray):
-        arr = cp.asarray(arr)
-
-    n_beams, n_samples = arr.shape
-
-    # square the signal (energy) as in classic algorithm
-    energy = arr * arr
-
-    # cumulative sum with leading zero
-    csum = xp.concatenate([xp.zeros((n_beams, 1), dtype=energy.dtype), xp.cumsum(energy, axis=1)], axis=1)
-
-    def trailing_mean(window):
-        if window <= 0:
-            return xp.zeros((n_beams, n_samples), dtype=energy.dtype)
-
-        sums = csum[:, window:] - csum[:, :-window]
-        if sums.shape[1] < n_samples:
-            pad_width = n_samples - sums.shape[1]
-            pad = xp.zeros((n_beams, pad_width), dtype=sums.dtype)
-            means = xp.concatenate([pad, sums / float(window)], axis=1)
-        else:
-            means = sums / float(window)
-        return means
-
-    sta_full = trailing_mean(sta_samples)
-    lta_full = trailing_mean(lta_samples)
-
-    # avoid divide-by-zero
-    ratio = sta_full / (lta_full + 1e-12)
-    return ratio
-
-
 def classic_sta_lta(beams, nsta, nlta, use_gpu=True):
     """GPU/CPU implementation of ObsPy's classic_sta_lta for 2D arrays.
 

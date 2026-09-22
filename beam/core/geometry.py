@@ -319,7 +319,10 @@ def slowness_to_velocity_azimuth(slowness_x, slowness_y):
     velocity : float
         Apparent velocity in km/s
     backazimuth : float
-        Back-azimuth in degrees (0-360, measured clockwise from North)
+        Back-azimuth in degrees (0-360, measured clockwise from North): the
+        direction the wave arrives FROM. This matches the grid angle used by
+        ``beam_driver.compute_delays``, so a peak found at grid angle ``theta``
+        is a backazimuth of ``theta`` and needs no 180-degree correction.
     """
     slowness = np.sqrt(slowness_x**2 + slowness_y**2)
     
