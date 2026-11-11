@@ -77,6 +77,53 @@ def apply_gpu_safety_factor(value, logger=logger):
         print(f"Set GPU memory safety factor to {_gpu_mod.GPU_MEMORY_SAFETY_FACTOR}")
     except Exception as e:
         logger.warning(f"Failed to set global GPU safety factor: {e}")
+
+
+def _adopt_fk_result(det, fk):
+    """Record an FK refinement on a detection and make it the working estimate.
+
+    The grid-search values are quantised to the beam grid (``azimuth_step``,
+    10 deg by default), so once FK has refined a detection its backazimuth and
+    slowness are what triangulation, the least-squares locator and the exported
+    detections should use. The grid values are kept as ``grid_*``.
+    """
+    vel = fk.get('velocity')
+    slow = fk.get('slowness')
+    if slow is None and vel:
+        slow = 1.0 / vel if np.isfinite(vel) and vel > 0 else 0.0
+    det['fk_velocity'] = vel
+    det['fk_backazimuth'] = fk.get('backazimuth')
+    det['fk_power'] = fk.get('power')
+    det['fk_slowness'] = slow
+    if 'semblance' in fk:
+        det['fk_semblance'] = fk['semblance']
+    for key in ('backazimuth', 'velocity', 'slowness'):
+        if key in det and f'grid_{key}' not in det:
+            det[f'grid_{key}'] = det[key]
+    det['backazimuth'] = fk.get('backazimuth')
+    if vel is not None:
+        det['velocity'] = vel
+    if slow is not None:
+        det['slowness'] = slow
+    det['estimate'] = 'fk'
+
+
+def backprojection_options_from_args(args):
+    """Back-projection options dict from parsed CLI/config args, or None if off."""
+    if not getattr(args, 'backproject', False):
+        return None
+    phases = getattr(args, 'bp_phases', None)
+    if isinstance(phases, str):
+        phases = [p.strip() for p in phases.split(',') if p.strip()]
+    opts = {
+        'step_km': args.bp_step_km, 'margin_km': args.bp_margin_km,
+        'depths_km': args.bp_depths, 'velocity': args.bp_velocity,
+        's_velocity': args.bp_s_velocity, 'model': args.bp_model, 'phases': phases,
+        'cf_method': args.bp_cf, 'min_subarrays': args.bp_min_subarrays,
+    }
+    return {k: v for k, v in opts.items() if v is not None}
+
+
 class BeamArrayDetector:
     """Array-based correlation detector (Gibbons & Ringdal style).
 
@@ -1088,7 +1135,10 @@ class TraditionalBeamformer:
             delay = delays[sta]
             # Trim using the unshifted common window adjusted for station delay
             tr_shifted = tr.copy()
-            tr_shifted.trim(common_start - delay, common_end - delay)
+            # pad=True: without it, a window reaching before the trace start
+            # is silently not applied, leaving that station unshifted
+            tr_shifted.trim(common_start - delay, common_end - delay,
+                            pad=True, fill_value=0.0, nearest_sample=True)
             
             # Allow small length mismatches by taking the minimum overlapping
             # length after trimming. This handles minor rounding or off-by-one
@@ -1101,10 +1151,8 @@ class TraditionalBeamformer:
         if n_traces == 0:
             logger.debug('No traces included in beam sum after delay alignment')
             return None
-        else:
-            logger.debug(f"Beam assembled: n_traces={n_traces}, beam_len={len(beam_data)}, slowness={slowness}, backazimuth={backazimuth}")
-            return None
-        
+        logger.debug(f"Beam assembled: n_traces={n_traces}, beam_len={len(beam_data)}, slowness={slowness}, backazimuth={backazimuth}")
+
         if normalize:
             beam_data /= n_traces
         
@@ -1660,77 +1708,287 @@ class TraditionalBeamformer:
         return beam_trace
 
     
+    @staticmethod
+    def _parabolic_offset(y_minus, y_0, y_plus):
+        """Sub-cell offset (in cells, within [-0.5, 0.5]) of a 3-point parabola's vertex."""
+        den = y_minus - 2.0 * y_0 + y_plus
+        if not np.isfinite(den) or den >= 0.0:
+            return 0.0
+        return float(np.clip(0.5 * (y_minus - y_plus) / den, -0.5, 0.5))
+
+    def _window_matrix(self, stream, allowed=None, taper=True, min_traces=3):
+        """Stack the traces of ``stream`` into a matrix, one row per station.
+
+        Only stations in ``allowed`` are used (default: the current array
+        geometry). Returns ``(stations, traces, sampling_rate, start_time)``
+        with traces cut to their common window (from ``start_time``), demeaned (and cosine-tapered when
+        ``taper``), or ``None`` when fewer than ``min_traces`` remain.
+        """
+        allowed = self.array_geometry if allowed is None else allowed
+        rows = [tr for tr in stream if tr.stats.station in allowed]
+        if len(rows) < min_traces:
+            return None
+        fs = rows[0].stats.sampling_rate
+        rows = [tr for tr in rows if abs(tr.stats.sampling_rate - fs) < 1e-6]
+        seen, uniq = set(), []
+        for tr in rows:  # one trace per station
+            if tr.stats.station not in seen:
+                seen.add(tr.stats.station)
+                uniq.append(tr)
+        if len(uniq) < min_traces:
+            return None
+        t0 = max(tr.stats.starttime for tr in uniq)
+        offs = [int(round((t0 - tr.stats.starttime) * fs)) for tr in uniq]
+        n = min(len(tr.data) - o for tr, o in zip(uniq, offs))
+        if n < 8:
+            return None
+        X = np.array([np.asarray(tr.data[o:o + n], dtype=np.float64)
+                      for tr, o in zip(uniq, offs)])
+        X -= X.mean(axis=1, keepdims=True)
+        if taper:
+            from scipy.signal.windows import tukey
+            X *= tukey(n, 0.1)[None, :]
+        return [tr.stats.station for tr in uniq], X, fs, t0
+
     def fk_analysis(self, stream, time_window, window_length=3.0,
                     slowness_range=0.3, slowness_step=0.01):
         """
-        Frequency-Wavenumber (FK) analysis for a time window.
-        
+        Frequency-wavenumber (FK) analysis for a time window.
+
+        Beam power is evaluated on a Cartesian slowness grid (sx, sy) covering
+        the disc ``|s| <= slowness_range`` -- end points included -- in one
+        batched call to :func:`beam.core.gpu_beam.beamform_freq_domain`. The
+        peak is then refined below the grid spacing by a parabola through its
+        neighbours along each axis, so the reported backazimuth is not
+        quantised to the cell size (a 0.01 s/km cell is ~3.4 deg of azimuth at
+        0.17 s/km). Semblance is evaluated exactly at the refined peak (see
+        :mod:`beam.core.coherence`).
+
+        Delays follow :meth:`compute_delays`: the grid direction that maximises
+        power IS the backazimuth.
+
         Parameters
         ----------
         stream : obspy.Stream
-            Input data
+            Input data (waveforms, not a characteristic function).
         time_window : UTCDateTime
             Center time for analysis
         window_length : float
             Length of window in seconds
         slowness_range : float
-            Maximum slowness magnitude (s/km)
+            Maximum slowness magnitude (s/km). Must exceed the slowest phase of
+            interest (e.g. 1/1.5 km/s = 0.67 s/km for slow surface waves).
         slowness_step : float
-            Grid spacing for slowness
-            
+            Grid spacing for slowness (s/km)
+
         Returns
         -------
-        result : dict
-            FK analysis results
+        result : dict or None
+            ``slowness``, ``velocity``, ``backazimuth``, ``power`` (mean
+            squared beam amplitude), ``semblance``, ``sx``, ``sy``,
+            ``n_stations``; ``None`` if fewer than three usable traces.
         """
+        from beam.core.coherence import semblance_at
+
         st = stream.copy()
         t1 = time_window - window_length / 2
         t2 = time_window + window_length / 2
         st.trim(t1, t2)
-        
-        if len(st) < 3:
+        packed = self._window_matrix(st)
+        if packed is None:
             return None
-        
-        sx_range = np.arange(-slowness_range, slowness_range, slowness_step)
-        sy_range = np.arange(-slowness_range, slowness_range, slowness_step)
-        
-        max_power = -np.inf
-        best_sx, best_sy = 0, 0
-        
-        for sx in sx_range:
-            for sy in sy_range:
-                slowness = np.sqrt(sx**2 + sy**2)
-                
-                if slowness > slowness_range:
-                    continue
-                
-                azimuth = np.degrees(np.arctan2(sx, sy)) % 360
-                beam = self.beamform(st, slowness, azimuth, normalize=True,
-                                    use_envelope=False)
-                
-                if beam is None:
-                    continue
-                
-                power = np.sum(beam.data**2)
-                
-                if power > max_power:
-                    max_power = power
-                    best_sx = sx
-                    best_sy = sy
-        
-        best_slowness = np.sqrt(best_sx**2 + best_sy**2)
+        stations, X, fs, _ = packed
+        xy = np.array([self.array_geometry[s][:2] for s in stations], dtype=np.float64)
+
+        n = int(np.ceil(slowness_range / slowness_step - 1e-9))
+        axis = np.arange(-n, n + 1) * slowness_step
+        SX, SY = np.meshgrid(axis, axis, indexing='ij')
+        delays = SX.ravel()[:, None] * xy[None, :, 0] + SY.ravel()[:, None] * xy[None, :, 1]
+        beams, _ = gpu_beam.beamform_freq_domain(X, delays, fs, use_gpu=self.use_gpu)
+        beams = np.asarray(beams.get() if hasattr(beams, 'get') else beams)
+        power = np.mean(beams ** 2, axis=1).reshape(SX.shape) / len(stations) ** 2
+        power[np.hypot(SX, SY) > slowness_range + 1e-9] = -np.inf
+
+        i, j = np.unravel_index(int(np.argmax(power)), power.shape)
+        if not np.isfinite(power[i, j]):
+            return None
+        di = dj = 0.0
+        if 0 < i < power.shape[0] - 1:
+            di = self._parabolic_offset(power[i - 1, j], power[i, j], power[i + 1, j])
+        if 0 < j < power.shape[1] - 1:
+            dj = self._parabolic_offset(power[i, j - 1], power[i, j], power[i, j + 1])
+        best_sx = float(axis[i] + di * slowness_step)
+        best_sy = float(axis[j] + dj * slowness_step)
+
+        best_slowness = float(np.hypot(best_sx, best_sy))
         best_velocity = 1.0 / best_slowness if best_slowness > 0 else np.inf
-        best_azimuth = np.degrees(np.arctan2(best_sx, best_sy)) % 360
-        
+        best_azimuth = float(np.degrees(np.arctan2(best_sx, best_sy)) % 360)
+        semb = semblance_at(X, best_sx * xy[:, 0] + best_sy * xy[:, 1], fs)
+
         return {
             'slowness': best_slowness,
             'velocity': best_velocity,
             'backazimuth': best_azimuth,
-            'power': max_power,
+            'power': float(power[i, j]),
+            'semblance': semb,
             'sx': best_sx,
-            'sy': best_sy
+            'sy': best_sy,
+            'n_stations': len(stations),
         }
-    
+
+    BACKPROJECTION_DEFAULTS = {
+        'step_km': 2.0,          # horizontal node spacing
+        'margin_km': 20.0,       # grid extends this far beyond the stations
+        'depths_km': [0.0, 5.0, 10.0, 15.0, 20.0],
+        'velocity': 6.0,         # P (or surface-wave group) velocity, km/s
+        # S is stacked by default: a P-only stack on data that also carry S can
+        # lock P at one sub-array onto S at another and give a confident but
+        # wrong location (see beam.core.backprojection). 'auto' = velocity/sqrt(3);
+        # 0 or None stacks one phase only (surface-wave mode does this).
+        's_velocity': 'auto',
+        'model': None,           # 1-D TauP model ('iasp91', ...) instead of velocities
+        'phases': None,          # with model; default ['P', 'S']
+        'cf_method': 'sta_lta',  # or 'envelope'
+        'sta_s': 0.5, 'lta_s': 10.0, 'smooth_s': 0.5,
+        'cf_rate': 10.0,         # CF resampled to ~this rate before stacking
+        'min_subarrays': 2,      # distinct sub-arrays that must have detected
+        'group_gap_s': 5.0,      # detections closer than this form one event
+        'pre_s': 5.0, 'post_s': 10.0,
+        'err_level': 0.9,
+    }
+
+    def _backprojection_setup(self, opts):
+        """Build (and cache) the source grid and travel-time tables."""
+        from beam.core import backprojection as bpm
+        key = (tuple(sorted(self.station_coords)), repr(sorted(opts.items())))
+        cached = getattr(self, '_bp_cache', None)
+        if cached is not None and cached[0] == key:
+            return cached[1]
+        depths = opts['depths_km']
+        if isinstance(depths, str):
+            depths = [float(v) for v in depths.split(',') if v.strip()]
+        grid = bpm.grid_around_stations(self.station_coords, opts['margin_km'],
+                                        opts['step_km'], depths)
+        stations = sorted(self.station_coords)
+        tables = []
+        if opts.get('model'):
+            for ph in (opts.get('phases') or ['P', 'S']):
+                tables.append((ph, bpm.travel_time_table(grid, self.station_coords, stations,
+                                                         model=opts['model'], phase=ph)))
+        else:
+            tables.append(('P', bpm.travel_time_table(grid, self.station_coords, stations,
+                                                      velocity=opts['velocity'])))
+            sv = opts.get('s_velocity')
+            if isinstance(sv, str):
+                sv = (float(opts['velocity']) / np.sqrt(3.0) if sv.lower() == 'auto'
+                      else (0.0 if sv.lower() in ('none', 'off', '') else float(sv)))
+            if sv:
+                tables.append(('S', bpm.travel_time_table(grid, self.station_coords, stations,
+                                                          velocity=sv)))
+        logger.info(f"Back-projection grid: {grid.n_nodes} nodes "
+                    f"({grid.shape[2]}x{grid.shape[1]} x {grid.shape[0]} depths, "
+                    f"{opts['step_km']} km), phases {[p for p, _ in tables]}")
+        setup = (grid, stations, tables)
+        self._bp_cache = (key, setup)
+        return setup
+
+    def backproject_detections(self, stream, detections, options=None,
+                               date_str='', plot=False, plot_dir=None):
+        """Locate detection groups by back projection.
+
+        Detections from all sub-arrays are grouped in time (``group_gap_s``);
+        each group seen by at least ``min_subarrays`` sub-arrays becomes an
+        event candidate. For each, every station's characteristic function is
+        stacked along predicted travel times to the source grid (see
+        :mod:`beam.core.backprojection`), each sub-array weighted to a total of
+        one so dense sub-arrays do not outvote sparse ones.
+
+        Parameters
+        ----------
+        stream : obspy.Stream
+            The filtered day stream.
+        detections : list of dict
+            Per-sub-array detections (``time``, ``subarray_id``).
+        options : dict
+            Overrides for :attr:`BACKPROJECTION_DEFAULTS`.
+
+        Returns
+        -------
+        list of dict
+            One location per event candidate: ``lat``, ``lon``, ``depth_km``,
+            ``origin_time`` (epoch s), ``coherence``, ``contrast``,
+            ``err_*_km``, ``on_edge``, plus ``time_first``, ``n_detections``
+            and ``subarrays``. Also written to
+            ``<plot_dir>/locations_bp_<date>.json`` when ``plot_dir`` is set.
+        """
+        from beam.core import backprojection as bpm
+        opts = dict(self.BACKPROJECTION_DEFAULTS)
+        opts.update({k: v for k, v in (options or {}).items()
+                     if v is not None or k == 's_velocity'})
+        if not detections:
+            return []
+        grid, stations_all, tables = self._backprojection_setup(opts)
+        tt_max = max(float(tt.max()) for _, tt in tables)
+
+        dets = sorted(detections, key=lambda d: float(UTCDateTime(d['time'])))
+        groups, cur = [], [dets[0]]
+        for d in dets[1:]:
+            if float(UTCDateTime(d['time'])) - float(UTCDateTime(cur[-1]['time'])) <= opts['group_gap_s']:
+                cur.append(d)
+            else:
+                groups.append(cur)
+                cur = [d]
+        groups.append(cur)
+
+        results = []
+        for g in groups:
+            subs = sorted({d.get('subarray_id') for d in g if d.get('subarray_id') is not None})
+            if len(subs) < opts['min_subarrays'] and len(getattr(self, 'subarrays', None) or [None]) >= opts['min_subarrays']:
+                continue
+            t_first = min(UTCDateTime(d['time']) for d in g)
+            t_last = max(UTCDateTime(d['time']) for d in g)
+            t0_lo = t_first - tt_max - opts['pre_s']
+            win = stream.slice(t0_lo - opts['lta_s'] - opts['pre_s'],
+                               t_last + tt_max + opts['post_s'])
+            packed = self._window_matrix(win, allowed=set(stations_all), taper=False, min_traces=3)
+            if packed is None:
+                continue
+            stas, X, fs, win_start = packed
+            cols = [stations_all.index(s) for s in stas]
+            cf, rate = bpm.characteristic_functions(
+                X, fs, method=opts['cf_method'], sta_s=opts['sta_s'], lta_s=opts['lta_s'],
+                smooth_s=opts['smooth_s'], target_rate=opts['cf_rate'])
+            start = float(win_start)
+            res = bpm.backproject(
+                [cf] * len(tables), [tt[:, cols] for _, tt in tables], rate, start, grid,
+                weights=bpm.subarray_weights(stas, getattr(self, 'subarrays', None)),
+                t0_range=(float(t0_lo), float(t_last)), err_level=opts['err_level'])
+            out = res.to_dict()
+            out.update({'time_first': float(t_first), 'n_detections': len(g),
+                        'subarrays': [int(s) for s in subs], 'stations': stas,
+                        'phases': [p for p, _ in tables]})
+            results.append(out)
+            if plot and plot_dir:
+                try:
+                    figdir = os.path.join(plot_dir, 'backprojection')
+                    os.makedirs(figdir, exist_ok=True)
+                    tag = UTCDateTime(res.origin_time).strftime('%Y%m%dT%H%M%S')
+                    bpm.plot_brightness(res, grid, {s: self.station_coords[s] for s in stas},
+                                        os.path.join(figdir, f"bp_{tag}.png"),
+                                        title=f"{UTCDateTime(res.origin_time)}  coh {res.coherence:.2f}")
+                except Exception as e:
+                    logger.debug(f"Back-projection figure failed: {e}")
+
+        logger.info(f"Back projection {date_str}: {len(results)} locations from {len(groups)} detection groups")
+        if plot_dir and results:
+            import json
+            os.makedirs(plot_dir, exist_ok=True)
+            path = os.path.join(plot_dir, f"locations_bp_{date_str}.json")
+            with open(path, 'w') as fh:
+                json.dump(results, fh, indent=2)
+            logger.info(f"Wrote back-projection locations: {path}")
+        return results
+
     def cluster_detections(self, detections, time_tolerance=5.0):
         """
         Cluster detections in time to remove duplicates.
@@ -1785,7 +2043,11 @@ class TraditionalBeamformer:
                            fk_min_snr=0.0,
                            decimate=1,
                            plot=False,
-                           plot_dir=None):
+                           plot_dir=None,
+                           fk_window=3.0,
+                           fk_slowness_max=None,
+                           fk_slowness_step=0.01,
+                           backprojection=None):
         """
         Process a single day with traditional beamforming.
         
@@ -1896,15 +2158,18 @@ class TraditionalBeamformer:
                 refine_candidates = sorted(refine_candidates, key=lambda x: x.get('snr', 0.0), reverse=True)
                 refine_candidates = refine_candidates[:fk_max_per_subarray] if fk_max_per_subarray is not None else refine_candidates
 
+                fk_smax = fk_slowness_max if fk_slowness_max is not None else 1.05 / float(velocity_range[0])
                 for det in refine_candidates:
                     try:
-                        fk_result = self.fk_analysis(substream, det['time'])
-                    except Exception:
+                        fk_result = self.fk_analysis(substream, det['time'],
+                                                     window_length=fk_window,
+                                                     slowness_range=fk_smax,
+                                                     slowness_step=fk_slowness_step)
+                    except Exception as e:
+                        logger.debug(f"FK analysis failed at {det['time']}: {e}")
                         fk_result = None
-                    if fk_result:
-                        det['fk_velocity'] = fk_result['velocity']
-                        det['fk_backazimuth'] = fk_result['backazimuth']
-                        det['fk_power'] = fk_result['power']
+                    if fk_result and np.isfinite(fk_result.get('power', np.nan)):
+                        _adopt_fk_result(det, fk_result)
 
                 logger.info(f"Subarray {i}: FK refinements performed: {len(refine_candidates)} / {len(clustered_sub)} (cap={fk_max_per_subarray}, min_snr={fk_min_snr})")
 
@@ -2197,6 +2462,16 @@ class TraditionalBeamformer:
         except Exception as e:
             logger.debug(f"Least-squares locator failed: {e}")
 
+        # Back-projection location (optional): stack characteristic functions
+        # of every station along predicted travel times to a source grid.
+        if backprojection:
+            try:
+                self.last_backprojection = self.backproject_detections(
+                    stream, day_all_detections, backprojection,
+                    date_str=date_str, plot=plot, plot_dir=plot_dir)
+            except Exception as e:
+                logger.warning(f"Back-projection locator failed for {date_str}: {e}")
+
         if plot and plot_dir:
             try:
                 outfile = plot_daily_detections(date_str, stream, clustered, self, outdir=plot_dir)
@@ -2224,7 +2499,11 @@ class TraditionalBeamformer:
                            fk_min_snr=0.0,
                            decimate=1,
                            plot=False,
-                           plot_dir=None):
+                           plot_dir=None,
+                           fk_window=3.0,
+                           fk_slowness_max=None,
+                           fk_slowness_step=0.01,
+                           backprojection=None):
         """
         Process multiple days with traditional beamforming.
         
@@ -2257,6 +2536,9 @@ class TraditionalBeamformer:
             dates.append(current.strftime('%Y%m%d'))
             current += 86400
         
+        extra = dict(fk_window=fk_window, fk_slowness_max=fk_slowness_max,
+                     fk_slowness_step=fk_slowness_step, backprojection=backprojection)
+
         logger.info(f"Processing {len(dates)} days with traditional beamforming")
         logger.info(f"Envelope mode: {use_envelope} ({cf_method})")
         
@@ -2272,7 +2554,7 @@ class TraditionalBeamformer:
                         sta_len, lta_len, threshold,
                         use_envelope, cf_method,
                         max_beams=max_beams, fk_max_per_subarray=fk_max_per_subarray, fk_min_snr=fk_min_snr, decimate=decimate,
-                        plot=plot, plot_dir=plot_dir
+                        plot=plot, plot_dir=plot_dir, **extra
                     )
                     if len(dets) > 0:
                         all_detections[date] = dets
@@ -2291,7 +2573,7 @@ class TraditionalBeamformer:
                 threshold=threshold,
                 use_envelope=use_envelope,
                 cf_method=cf_method,
-                max_beams=max_beams, fk_max_per_subarray=fk_max_per_subarray, fk_min_snr=fk_min_snr, decimate=decimate, plot=plot, plot_dir=plot_dir
+                max_beams=max_beams, fk_max_per_subarray=fk_max_per_subarray, fk_min_snr=fk_min_snr, decimate=decimate, plot=plot, plot_dir=plot_dir, **extra
             )
             
             n_procs = n_processes or mp.cpu_count()
@@ -2442,6 +2724,34 @@ Examples:
                        help='Maximum FK refinements per subarray (top-N by SNR)')
     parser.add_argument('--fk-min-snr', type=float, default=0.0,
                        help='Minimum SNR threshold to consider for FK refinement')
+    parser.add_argument('--fk-window', type=float, default=3.0,
+                        help='FK analysis window length (s); lengthen for long-period/surface waves')
+    parser.add_argument('--fk-slowness-max', type=float, default=None,
+                        help='Largest slowness searched by FK (s/km); default 1.05/vel-min')
+    parser.add_argument('--fk-slowness-step', type=float, default=0.01,
+                        help='FK slowness grid spacing (s/km); the peak is refined below it')
+    # Back-projection locator (off by default); unset values use
+    # TraditionalBeamformer.BACKPROJECTION_DEFAULTS
+    parser.add_argument('--backproject', action='store_true', default=False,
+                        help='Also locate detection groups by back projection (stacking station '
+                             'characteristic functions along predicted travel times to a source grid)')
+    parser.add_argument('--bp-step-km', type=float, default=None, help='Back-projection grid spacing (km)')
+    parser.add_argument('--bp-margin-km', type=float, default=None,
+                        help='Back-projection grid extent beyond the stations (km)')
+    parser.add_argument('--bp-depths', default=None,
+                        help='Comma-separated trial depths in km, e.g. "0,5,10,15"')
+    parser.add_argument('--bp-velocity', type=float, default=None,
+                        help='P (or surface-wave group) velocity for back projection (km/s)')
+    parser.add_argument('--bp-s-velocity', type=float, default=None,
+                        help='S velocity stacked with P (km/s); default bp-velocity/sqrt(3); 0 = P only')
+    parser.add_argument('--bp-model', default=None,
+                        help='1-D TauP model (e.g. iasp91) for travel times instead of constant velocities')
+    parser.add_argument('--bp-phases', default=None,
+                        help='Phases for --bp-model, comma-separated (default P,S)')
+    parser.add_argument('--bp-cf', choices=['sta_lta', 'envelope'], default=None,
+                        help='Characteristic function stacked by back projection')
+    parser.add_argument('--bp-min-subarrays', type=int, default=None,
+                        help='Sub-arrays that must detect an event before it is back-projected')
     parser.add_argument('--plot', action='store_true', default=False,
                         help='Create and save daily detection plots (one file per day)')
     parser.add_argument('--plot-dir', default='plots',
@@ -2509,6 +2819,16 @@ Examples:
             args.sta_len = 10.0
         if args.lta_len == 30.0:
             args.lta_len = 300.0
+        # Back projection of surface waves: emergent wave trains, no depth
+        # resolution, group velocity rather than P velocity.
+        if args.bp_cf is None:
+            args.bp_cf = 'envelope'
+        if args.bp_depths is None:
+            args.bp_depths = '0'
+        if args.bp_velocity is None:
+            args.bp_velocity = 3.0
+        if args.bp_s_velocity is None:
+            args.bp_s_velocity = 0.0
 
     # apply the incoming CLI/config override if present
     apply_gpu_safety_factor(args.gpu_safety_factor)
@@ -2674,7 +2994,10 @@ Examples:
             max_beams=args.max_beams,
             decimate=args.decimate
             ,plot=args.plot, plot_dir=args.plot_dir,
-            fk_max_per_subarray=args.fk_max_per_subarray, fk_min_snr=args.fk_min_snr
+            fk_max_per_subarray=args.fk_max_per_subarray, fk_min_snr=args.fk_min_snr,
+            fk_window=args.fk_window, fk_slowness_max=args.fk_slowness_max,
+            fk_slowness_step=args.fk_slowness_step,
+            backprojection=backprojection_options_from_args(args),
         )
         
         beamformer.save_detections(detections, args.output, min_snr=args.min_snr_output)

@@ -41,7 +41,7 @@ def test_fk_cap_top_k(monkeypatch):
     # instrument fk_analysis to count calls
     calls = []
 
-    def fake_fk(stream, t):
+    def fake_fk(stream, t, **kwargs):
         calls.append(t)
         return {'velocity': 3.5, 'backazimuth': 31.0, 'power': 10.0}
 
@@ -70,7 +70,7 @@ def test_fk_cap_threshold(monkeypatch):
     monkeypatch.setattr(bf, 'grid_search_detection', lambda *args, **kwargs: raw)
 
     recorded = []
-    def fake_fk(stream, t):
+    def fake_fk(stream, t, **kwargs):
         recorded.append(t)
         return {'velocity': 3.1, 'backazimuth': 11.0, 'power': 5.0}
 

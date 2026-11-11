@@ -118,10 +118,18 @@ def main():
             if cfg.get('plot', False):
                 cmd.extend(['--plot', '--plot-dir', plot_dir])
             # constructive pass of the FK/beam options
-            for k in ['vel_min', 'vel_max', 'vel_step', 'az_step', 'fk_max_per_subarray', 'fk_min_snr', 'min_snr_output']:
-                if k in cfg:
+            for k in ['vel_min', 'vel_max', 'vel_step', 'az_step', 'fk_max_per_subarray', 'fk_min_snr', 'min_snr_output',
+                      'fk_window', 'fk_slowness_max', 'fk_slowness_step',
+                      'bp_step_km', 'bp_margin_km', 'bp_depths', 'bp_velocity', 'bp_s_velocity',
+                      'bp_model', 'bp_phases', 'bp_cf', 'bp_min_subarrays']:
+                if k in cfg and cfg[k] is not None:
                     key = k.replace('_', '-')
-                    cmd.extend([f'--{key}', str(cfg[k])])
+                    val = cfg[k]
+                    if isinstance(val, (list, tuple)):  # e.g. bp_depths: [0, 5, 10]
+                        val = ','.join(str(v) for v in val)
+                    cmd.extend([f'--{key}', str(val)])
+            if cfg.get('backproject', False):
+                cmd.extend(['--backproject'])
             # subarrays -> pass inline as semicolon separated groups
             if 'subarrays' in cfg:
                 inline = ';'.join([','.join(g) for g in cfg['subarrays']])

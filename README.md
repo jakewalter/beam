@@ -37,7 +37,10 @@ This yields robust picks based on shape similarity to the master template.
 
 
 ### 3) FK Analysis (optional refinement)
-- Frequency–Wavenumber (FK) analysis in a short window to refine apparent slowness/azimuth that maximize beam power.
+- Frequency–Wavenumber (FK) analysis in a short window (`--fk-window`, default 3 s) to refine apparent slowness/azimuth that maximize beam power.
+- Beam power is computed on a Cartesian slowness grid (`--fk-slowness-step`, default 0.01 s/km) out to `--fk-slowness-max` (default `1.05/vel_min`, so slow surface waves are not clipped), in one batched call to the frequency-domain beamformer. The peak is refined below the grid spacing by a parabola through its neighbours, so the backazimuth is not quantised to the cell size.
+- Semblance (fraction of energy that stacks coherently, in [0, 1]) is reported at the refined peak as `fk_semblance`.
+- **An FK result replaces the grid-search estimate** for that detection: `backazimuth`, `velocity` and `slowness` become the FK values (the grid values are kept as `grid_*`, and `estimate: "fk"` is set), so triangulation and the LSQ locator use the refined direction rather than the `az_step` grid cell. Only the top `fk_max_per_subarray` detections per sub-array (by SNR) are refined.
 
 ### 4) Pairwise Triangulation & LSQ Localization
 - Pairwise triangulation uses two arrays' centers and backazimuths to compute intersection of bearing lines.
@@ -93,6 +96,28 @@ More specifically, the implementation used in this repository follows these step
 
 
 These formulas are implemented in `beam/core/triangulation.py` (pairwise intersection) and `beam/core/locator.py` (least-squares multi-array fitter). The code uses a local equirectangular projection (suitable for regional scales) and combines TOA and directional constraints to produce robust location estimates.
+
+### 5) Back-projection locator (optional, `--backproject`)
+
+Instead of locating from picked backazimuths and times, back projection stacks every station's characteristic function (CF) along predicted travel times to a grid of trial sources:
+
+$$B(j, t_0) = \sum_{p} \sum_i w_i \, \mathrm{CF}_i^{p}\big(t_0 + T_p(j, i)\big)$$
+
+and takes the node and origin time of the maximum. Nothing is picked first, so a sub-array that missed the detection still contributes its energy, and the brightness map shows how well the event is constrained. Implemented in `beam/core/backprojection.py`; `TraditionalBeamformer.backproject_detections` runs it on every group of detections (within 5 s) seen by at least `--bp-min-subarrays` (default 2) sub-arrays.
+
+- **Grid:** the stations' bounding box plus `--bp-margin-km` (default 20), spacing `--bp-step-km` (default 2), depths `--bp-depths` (default `0,5,10,15,20`).
+- **Travel times:** straight rays at `--bp-velocity` (default 6.0 km/s), or a 1-D TauP model with `--bp-model iasp91` (phases `--bp-phases`, default `P,S`). Tables are built once and cached.
+- **Phases:** P and S are stacked by default (S at `bp_velocity/sqrt(3)` unless `--bp-s-velocity` is set; `0` = P only). This matters: on data that also carry S, a P-only stack can lock P at one sub-array onto S at another and give a location tens of km off that is still coherent and sharply peaked.
+- **CF:** `--bp-cf sta_lta` (default; gain-free, peaked at onsets) or `envelope` (normalised Hilbert envelope; for emergent arrivals).
+- **Weights:** each sub-array gets a total weight of 1, so dense sub-arrays do not outvote sparse ones.
+- **Surface-wave mode** switches to the envelope CF, a single 3.0 km/s group velocity and depth 0, unless overridden.
+- **Output** per event: `lat`, `lon`, `depth_km`, `origin_time`, `coherence` (peak / attainable maximum, in [0, 1]), `contrast` (peak / median node), `err_x_km`/`err_y_km`/`err_z_km` (spread of nodes within 90% of the peak, floored at grid resolution), `on_edge`, and the contributing `subarrays`/`stations`/`phases`. Written to `plot_dir/locations_bp_YYYYMMDD.json`; with `--plot`, a brightness map per event goes in `plot_dir/backprojection/`.
+- **Limits:** range resolution needs aperture, so a single compact array gives an elongated ridge, not a point. Depth trades off against origin time. A source *outside* the grid is drawn to an interior node, often with a tight error estimate (`on_edge` catches only some of these), so size the margin generously.
+
+```bash
+python beam_driver.py --mode traditional -d /data/day_volumes -s 20200101 -e 20200102 \
+    --subarrays-file subarrays.json --backproject --bp-step-km 2 --bp-depths 0,5,10,15 --plot
+```
 
 ### Triangulation methods: intersection vs LSQ (practical details) ✅
 
@@ -286,6 +311,7 @@ Notes:
   - `plot_dir/detections_YYYYMMDD.txt` (per-day text summary output)
   - `plot_dir/locations_YYYYMMDD.json` (pairwise triangulation results)
   - `plot_dir/locations_lsq_YYYYMMDD.json` (LSQ multi-array location results, when at least 3 arrays) 
+  - `plot_dir/locations_bp_YYYYMMDD.json` (back-projection locations, with `--backproject`)
   - `plot_dir/locations_summary_YYYYMMDD.csv` (deduplicated summary for mapping & analysis)
 
 - The pipeline orchestrator `run_pipeline.py` wraps the daily runs and the follow-up triangular & cluster steps. It prefers `detections_YYYYMMDD.json` when present for triangulation.
@@ -304,6 +330,11 @@ Notes:
     - `cf_method` — `envelope`, `energy`, or `kurtosis`.
   - FK & postprocess:
     - `fk_max_per_subarray`, `fk_min_snr` — FK refinement controls.
+    - `fk_window`, `fk_slowness_max`, `fk_slowness_step` — FK window (s), slowness limit and grid (s/km).
+  - Back projection (off unless `backproject: true`):
+    - `bp_step_km`, `bp_margin_km`, `bp_depths` — source grid.
+    - `bp_velocity`, `bp_s_velocity`, or `bp_model` + `bp_phases` — travel times.
+    - `bp_cf`, `bp_min_subarrays` — characteristic function and event gate.
   - GPU options:
     - `gpu` (true/false), and `gpu_safety_factor` (int) — smaller values use more memory (faster but risk OOM).
     - `BEAM_GPU_SAFETY_FACTOR` env var is used; the code also dynamically reads this value during runtime if needed.
